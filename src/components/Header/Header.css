@@ -1,0 +1,13 @@
+.headerWrapper {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+.gamesButtons {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+}
