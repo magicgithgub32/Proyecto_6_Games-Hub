@@ -3,9 +3,9 @@ import React from "react";
 
 const Main = () => {
   return (
-    <div className="mainWrapper">
-      <p>Soy el Main</p>
-    </div>
+    <figure className="mainWrapper">
+      <img src="./public/Hotpot.png" alt="GamesHub" />
+    </figure>
   );
 };
 

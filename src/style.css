@@ -6,6 +6,9 @@
   --button-color: #11cce1;
   --primary-text-color: #020202;
   --button-text-color: whitesmoke;
+
+  --transition: 0.8s ease-in-out;
+
 }
 
 * {
@@ -22,10 +25,15 @@ html {
 
 body {
   background-color: var(--main-bg-color);
-  color: var(--primary-text-color)
+  color: var(--primary-text-color);
 }
 
 button {
   background-color: var(--button-color);
-  color: var(--button-text-color)
+  color: var(--button-text-color);
+  padding: .5rem;
+  width: 150px;
+  height: auto;
+  font-size: 20px;
+
 }

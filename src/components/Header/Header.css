@@ -8,6 +8,18 @@
 
 .gamesButtons {
     display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     padding: 2rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+transition: var(--transition);
+-webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
 }

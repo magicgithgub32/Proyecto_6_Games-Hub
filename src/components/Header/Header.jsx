@@ -8,16 +8,13 @@ const Header = () => {
       <h1>GAMES HUB</h1>
       <article className="gamesButtons">
         <Link to={`/tictactoe`}>
-          <button>TICTACTOE</button>
+          <button>TIC-TAC-TOE</button>
         </Link>
         <Link to={`/hangman`}>
           <button>HANGMAN</button>
         </Link>
         <Link to={`/sudoku`}>
           <button>SUDOKU</button>
-        </Link>
-        <Link to={`/`}>
-          <button>back home</button>
         </Link>
       </article>
     </div>
