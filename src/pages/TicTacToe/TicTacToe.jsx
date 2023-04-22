@@ -1,5 +1,5 @@
 import "./TicTacToe.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const TicTacToe = () => {
@@ -14,6 +14,16 @@ const TicTacToe = () => {
   const playButtonHandler = () => {
     setisStarted(!isStarted);
   };
+
+  const useEffect =
+    (() => {
+      setBoard([
+        [null, null, null],
+        [null, null, null],
+        [null, null, null],
+      ]);
+    },
+    []);
 
   const playerTurnHandler = () => {
     setPlayerOneTurn(!playerOneTurn);
@@ -35,15 +45,18 @@ const TicTacToe = () => {
         </button>
       </section>
       <section className="tictactoeBoard">
-        <div className="grid-item">1</div>
-        <div className="grid-item">2</div>
-        <div className="grid-item">3</div>
-        <div className="grid-item">4</div>
-        <div className="grid-item">5</div>
-        <div className="grid-item">6</div>
-        <div className="grid-item">7</div>
-        <div className="grid-item">8</div>
-        <div className="grid-item">9</div>
+        <button onClick={playerTurnHandler} className="board-item" />
+        <button onClick={playerTurnHandler} className="board-item" />
+        <button onClick={playerTurnHandler} className="board-item" />
+        <button onClick={playerTurnHandler} className="board-item" />
+        <button onClick={playerTurnHandler} className="board-item" />
+        <button onClick={playerTurnHandler} className="board-item" />
+        <button onClick={playerTurnHandler} className="board-item" />
+        <button onClick={playerTurnHandler} className="board-item" />
+        <button onClick={playerTurnHandler} className="board-item" />
+      </section>
+      <section className="tictactoeTurn">
+        {playerOneTurn ? <h1>IT'S "X" TURN</h1> : <h1>IT'S "O" TURN</h1>}
       </section>
     </article>
   );
