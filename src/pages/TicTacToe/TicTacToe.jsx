@@ -23,7 +23,7 @@ const TicTacToe = () => {
         [null, null, null],
       ]);
     },
-    []);
+    [board]);
 
   const playerTurnHandler = () => {
     setPlayerOneTurn(!playerOneTurn);

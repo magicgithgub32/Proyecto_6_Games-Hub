@@ -29,19 +29,25 @@
 
 .tictactoeBoard {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    position: relative;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
     justify-content: center;
-    border: 1px solid black;
+    justify-items: center;;
     margin: 2rem;
 }
+
 .board-item {
     background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    font-size: 30px;
+    padding: 10px;
+    font-size: 10px;
     text-align: center;
-  }
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
+    
+}
 
   .tictactoeTurn {
     display: flex;
