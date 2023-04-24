@@ -11,10 +11,37 @@ const TicTacToe = () => {
     [null, null, null],
   ]);
 
+  useEffect(() => {
+    if (
+      (board[0][0] === "X" && board[0][1] === "X" && board[0][2] === "X") ||
+      (board[0][0] === "X" && board[1][0] === "X" && board[2][0] === "X") ||
+      (board[0][0] === "X" && board[1][1] === "X" && board[2][2] === "X") ||
+      (board[0][1] === "X" && board[1][1] === "X" && board[2][1] === "X") ||
+      (board[0][2] === "X" && board[1][1] === "X" && board[2][0] === "X") ||
+      (board[2][2] === "X" && board[2][1] === "X" && board[2][0] === "X") ||
+      (board[0][2] === "X" && board[1][2] === "X" && board[2][2] === "X") ||
+      (board[1][0] === "X" && board[1][1] === "X" && board[1][2] === "X")
+    ) {
+      alert("PLAYER X WINS 🚀");
+    } else if (
+      (board[0][0] === "Y" && board[0][1] === "Y" && board[0][2] === "Y") ||
+      (board[0][0] === "Y" && board[1][0] === "Y" && board[2][0] === "Y") ||
+      (board[0][0] === "Y" && board[1][1] === "Y" && board[2][2] === "Y") ||
+      (board[0][1] === "Y" && board[1][1] === "Y" && board[2][1] === "Y") ||
+      (board[0][2] === "Y" && board[1][1] === "Y" && board[2][0] === "Y") ||
+      (board[2][2] === "Y" && board[2][1] === "Y" && board[2][0] === "Y") ||
+      (board[0][2] === "Y" && board[1][2] === "Y" && board[2][2] === "Y") ||
+      (board[1][0] === "Y" && board[1][1] === "Y" && board[1][2] === "Y")
+    ) {
+      alert("PLAYER 0 WINS 🧨");
+    }
+    setisStarted(true);
+  }, [board]);
+
   const playButtonHandler = () => {
     setisStarted(!isStarted);
 
-    !isStarted &&
+    isStarted &&
       setBoard([
         [null, null, null],
         [null, null, null],
