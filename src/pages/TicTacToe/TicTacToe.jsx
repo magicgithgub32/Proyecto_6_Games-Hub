@@ -13,20 +13,38 @@ const TicTacToe = () => {
 
   const playButtonHandler = () => {
     setisStarted(!isStarted);
-  };
 
-  const useEffect =
-    (() => {
+    !isStarted &&
       setBoard([
         [null, null, null],
         [null, null, null],
         [null, null, null],
       ]);
-    },
-    [board]);
+  };
 
-  const playerTurnHandler = () => {
+  // const useEffect =
+  //   (() => {
+  //     if (isStarted) {
+  //       setPlayerOneTurn(!playerOneTurn);
+  //     }
+
+  //     // insertCellHandler();
+  //   },
+  //   [board, isStarted, playerOneTurn]);
+
+  // const playerTurnHandler = () => {
+  //   setPlayerOneTurn(!playerOneTurn);
+  // };
+
+  const insertCellHandler = (i, j) => {
     setPlayerOneTurn(!playerOneTurn);
+
+    if (board[i][j] === null) {
+      const newBoard = [...board];
+      newBoard[i][j] = playerOneTurn ? "X" : "O";
+      setBoard(newBoard);
+    }
+    console.log(board);
   };
 
   return (
@@ -45,6 +63,7 @@ const TicTacToe = () => {
         </button>
       </section>
       <section className="tictactoeBoard">
+        {/* <button onClick={playButtonHandler} className="board-item" />
         <button onClick={playerTurnHandler} className="board-item" />
         <button onClick={playerTurnHandler} className="board-item" />
         <button onClick={playerTurnHandler} className="board-item" />
@@ -52,8 +71,43 @@ const TicTacToe = () => {
         <button onClick={playerTurnHandler} className="board-item" />
         <button onClick={playerTurnHandler} className="board-item" />
         <button onClick={playerTurnHandler} className="board-item" />
-        <button onClick={playerTurnHandler} className="board-item" />
-        <button onClick={playerTurnHandler} className="board-item" />
+        <button onClick={playerTurnHandler} className="board-item" /> */}
+        <button
+          onClick={() => insertCellHandler(0, 0)}
+          className="board-item"
+        />
+        <button
+          onClick={() => insertCellHandler(0, 1)}
+          className="board-item"
+        />
+        <button
+          onClick={() => insertCellHandler(0, 2)}
+          className="board-item"
+        />
+        <button
+          onClick={() => insertCellHandler(1, 0)}
+          className="board-item"
+        />
+        <button
+          onClick={() => insertCellHandler(1, 1)}
+          className="board-item"
+        />
+        <button
+          onClick={() => insertCellHandler(1, 2)}
+          className="board-item"
+        />
+        <button
+          onClick={() => insertCellHandler(2, 0)}
+          className="board-item"
+        />
+        <button
+          onClick={() => insertCellHandler(2, 1)}
+          className="board-item"
+        />
+        <button
+          onClick={() => insertCellHandler(2, 2)}
+          className="board-item"
+        />
       </section>
       <section className="tictactoeTurn">
         {playerOneTurn ? <h1>IT'S "X" TURN</h1> : <h1>IT'S "O" TURN</h1>}
