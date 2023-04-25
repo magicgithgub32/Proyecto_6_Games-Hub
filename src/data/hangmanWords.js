@@ -1,0 +1,17 @@
+export const hangmanWords = [
+  "parasit",
+  "smartphone",
+  "watermelon",
+  "phantom",
+  "festival",
+  "performance",
+  "tendency",
+  "movement",
+  "political",
+  "typhoon",
+  "stellar",
+  "harmony",
+  "sapphire",
+  "gesture",
+  "vibrant",
+];

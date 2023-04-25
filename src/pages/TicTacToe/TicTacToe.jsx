@@ -1,6 +1,7 @@
 import "./TicTacToe.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+// import TictactoeBoardContainer from "../../components/TicTacToe/TicTacToeBoardContainer";
 
 const TicTacToe = () => {
   const [isStarted, setisStarted] = useState(false);
@@ -23,7 +24,7 @@ const TicTacToe = () => {
       (board[1][0] === "X" && board[1][1] === "X" && board[1][2] === "X")
     ) {
       setTimeout(() => {
-        alert("PLAYER X WINS 🚀!!!");
+        alert("🚀 PLAYER X WINS 🚀!!!");
       }, 200);
     } else if (
       (board[0][0] === "O" && board[0][1] === "O" && board[0][2] === "O") ||
@@ -36,15 +37,13 @@ const TicTacToe = () => {
       (board[1][0] === "O" && board[1][1] === "O" && board[1][2] === "O")
     ) {
       setTimeout(() => {
-        alert("PLAYER 0 WINS 🧨!!!");
+        alert("🧨 PLAYER 0 WINS 🧨!!!");
       }, 200);
     } else if (board.every((row) => row.every((cell) => cell !== null))) {
       setTimeout(() => {
         alert("🔗🌀THAT'S A TIE🌀🔗");
       }, 200);
     }
-
-    // setisStarted(true);
   }, [board]);
 
   const playButtonHandler = () => {
@@ -83,6 +82,12 @@ const TicTacToe = () => {
         </button>
       </section>
       {isStarted && (
+        // <TictactoeBoardContainer
+        //   board={board}
+        //   playerOneTurn={playerOneTurn}
+        //   insertCellHandler={{ insertCellHandler }}
+        // />
+
         <section className="tictactoeBoardContainer">
           <section className="tictactoeBoard">
             <button
