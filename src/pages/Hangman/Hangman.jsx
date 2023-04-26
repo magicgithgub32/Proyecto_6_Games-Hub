@@ -41,13 +41,21 @@ const Hangman = () => {
 
       {word && isStarted && (
         <section className="hangmanBody">
-          <section className="hangmanRow">
-            {word.split("").map((letter, index) => (
-              <div key={index} className="wordLetter">
+          <div className="wordContainer">
+            {word.split("").map((letter, i) => (
+              <div key={i} className="wordLetter">
                 {letter}
               </div>
             ))}
-          </section>
+          </div>
+
+          <div className="livesRow">
+            {word.split("").map((letter, j) => (
+              <div key={j} className="leftLives">
+                <img src="../1up.png" />
+              </div>
+            ))}
+          </div>
 
           <section className="hangmanAlphabet">
             {hangmanAlphabet.map((letter) => (

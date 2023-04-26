@@ -39,13 +39,43 @@
     text-align: center;
 }
 
-.hangmanRow {
+.wordContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .wordLetter {
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: bisque;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .livesRow {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
-}
-
-.wordLetter {
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .leftLives {
+    width: 40px;
+    height: 40px;
     display: flex;
-    border:rgba(0, 0, 0, 0.8)
-}
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .leftLives img {
+    width: 40px;
+    height: 40px;
+  }
