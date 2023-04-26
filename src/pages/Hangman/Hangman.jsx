@@ -8,12 +8,19 @@ const Hangman = () => {
   const [isStarted, setisStarted] = useState(false);
   const [word, setWord] = useState("");
 
-  const playButtonHandler = () => {
-    setisStarted(!isStarted);
-    isStarted &&
-      setWord(hangmanWords[Math.floor(Math.random() * hangmanWords.length)]);
-    console.log(isStarted);
+  useEffect(() => {
     console.log(word);
+  }, [word]);
+
+  const playButtonHandler = () => {
+    if (!isStarted) {
+      const newWord =
+        hangmanWords[Math.floor(Math.random() * hangmanWords.length)];
+      setWord(newWord);
+    }
+    setisStarted(!isStarted);
+
+    console.log(isStarted);
   };
 
   return (
@@ -32,16 +39,25 @@ const Hangman = () => {
         </button>
       </section>
 
-      <section className="hangmanBody">
-        <section className="hangmanRow"></section>
-        <section className="hangmanAlphabet">
-          {hangmanAlphabet.map((letter) => (
-            <button key={letter} className="letterButton">
-              {letter}
-            </button>
-          ))}
+      {word && isStarted && (
+        <section className="hangmanBody">
+          <section className="hangmanRow">
+            {word.split("").map((letter, index) => (
+              <div key={index} className="wordLetter">
+                {letter}
+              </div>
+            ))}
+          </section>
+
+          <section className="hangmanAlphabet">
+            {hangmanAlphabet.map((letter) => (
+              <button key={letter} className="letterButton">
+                {letter}
+              </button>
+            ))}
+          </section>
         </section>
-      </section>
+      )}
     </article>
   );
 };

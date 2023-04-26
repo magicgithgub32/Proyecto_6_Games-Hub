@@ -3,8 +3,17 @@ import React from "react";
 const TictactoeBoardContainer = ({
   board,
   playerOneTurn,
-  insertCellHandler,
+  setBoard,
+  setPlayerOneTurn,
 }) => {
+  const insertCellHandler = (i, j) => {
+    if (board[i][j] === null) {
+      const newBoard = [...board];
+      newBoard[i][j] = playerOneTurn ? "X" : "O";
+      setBoard(newBoard);
+      setPlayerOneTurn(!playerOneTurn);
+    }
+  };
   return (
     <section className="tictactoeBoardContainer">
       <section className="tictactoeBoard">

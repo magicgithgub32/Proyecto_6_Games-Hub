@@ -38,3 +38,14 @@
     width: 40px;
     text-align: center;
 }
+
+.hangmanRow {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.wordLetter {
+    display: flex;
+    border:rgba(0, 0, 0, 0.8)
+}
