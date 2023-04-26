@@ -7,6 +7,7 @@ import { hangmanWords } from "../../data/hangmanWords";
 const Hangman = () => {
   const [isStarted, setisStarted] = useState(false);
   const [word, setWord] = useState("");
+  const [guess, setGuess] = useState("");
 
   useEffect(() => {
     console.log(word);
@@ -22,6 +23,10 @@ const Hangman = () => {
 
     console.log(isStarted);
   };
+
+  // const checkLetter = (word, letterGuessed) => {
+  //   word.includes(letterGuessed) ?
+  // }
 
   return (
     <article className="hangmanWrapper">
@@ -44,7 +49,7 @@ const Hangman = () => {
           <div className="wordContainer">
             {word.split("").map((letter, i) => (
               <div key={i} className="wordLetter">
-                {letter}
+                ___
               </div>
             ))}
           </div>
