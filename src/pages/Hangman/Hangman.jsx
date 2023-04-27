@@ -7,7 +7,8 @@ import { hangmanWords } from "../../data/hangmanWords";
 const Hangman = () => {
   const [isStarted, setisStarted] = useState(false);
   const [word, setWord] = useState("");
-  const [guess, setGuess] = useState("");
+  const [guess, setGuess] = useState([]);
+  const [missedLetters, setMissedLetters] = useState([]);
 
   useEffect(() => {
     console.log(word);
@@ -24,9 +25,30 @@ const Hangman = () => {
     console.log(isStarted);
   };
 
-  // const checkLetter = (word, letterGuessed) => {
-  //   word.includes(letterGuessed) ?
-  // }
+  const checkLetter = (letterGuessed) => {
+    let isLetterFound = false;
+    for (let i = 0; i < word.length; i++) {
+      if (word[i] === letterGuessed && !guess.includes(letterGuessed)) {
+        isLetterFound = true;
+        setGuess([...guess, letterGuessed]);
+      }
+    }
+    if (
+      !isLetterFound &&
+      !missedLetters.includes(letterGuessed) &&
+      !guess.includes(letterGuessed)
+    ) {
+      setMissedLetters([...missedLetters, letterGuessed]);
+    }
+  };
+
+  useEffect(() => {
+    console.log(guess);
+  }, [guess]);
+
+  useEffect(() => {
+    console.log(missedLetters);
+  }, [missedLetters]);
 
   return (
     <article className="hangmanWrapper">
@@ -54,6 +76,8 @@ const Hangman = () => {
             ))}
           </div>
 
+          <div>{guess}</div>
+
           <div className="livesRow">
             {word.split("").map((letter, j) => (
               <div key={j} className="leftLives">
@@ -64,9 +88,19 @@ const Hangman = () => {
 
           <section className="hangmanAlphabet">
             {hangmanAlphabet.map((letter) => (
-              <button key={letter} className="letterButton">
+              <button
+                onClick={() => checkLetter(letter)}
+                key={letter}
+                className="letterButton"
+              >
                 {letter}
               </button>
+            ))}
+          </section>
+
+          <section className="missedLetters">
+            {missedLetters.map((missedletter) => (
+              <p>{missedletter}</p>
             ))}
           </section>
         </section>
