@@ -9,6 +9,7 @@ const Hangman = () => {
   const [word, setWord] = useState("");
   const [guess, setGuess] = useState([]);
   const [missedLetters, setMissedLetters] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     console.log(word);
@@ -27,10 +28,14 @@ const Hangman = () => {
 
   const checkLetter = (letterGuessed) => {
     let isLetterFound = false;
+    let correctGuessCount = 0;
     for (let i = 0; i < word.length; i++) {
       if (word[i] === letterGuessed && !guess.includes(letterGuessed)) {
         isLetterFound = true;
         setGuess([...guess, letterGuessed]);
+      }
+      if (guess.includes(word[i])) {
+        correctGuessCount++;
       }
     }
     if (
@@ -39,6 +44,9 @@ const Hangman = () => {
       !guess.includes(letterGuessed)
     ) {
       setMissedLetters([...missedLetters, letterGuessed]);
+    }
+    if (correctGuessCount === word.length) {
+      setVisible(true);
     }
   };
 
@@ -70,13 +78,14 @@ const Hangman = () => {
         <section className="hangmanBody">
           <div className="wordContainer">
             {word.split("").map((letter, i) => (
-              <div key={i} className="wordLetter">
-                ___
+              <div
+                className={visible ? "wordLetter" : "nonVisibleWordLetter"}
+                key={i}
+              >
+                {guess.includes(letter) ? letter : " "}
               </div>
             ))}
           </div>
-
-          <div>{guess}</div>
 
           <div className="livesRow">
             {word.split("").map((letter, j) => (
@@ -99,8 +108,8 @@ const Hangman = () => {
           </section>
 
           <section className="missedLetters">
-            {missedLetters.map((missedletter) => (
-              <p>{missedletter}</p>
+            {missedLetters.map((missedletter, index) => (
+              <p key={index}>{missedletter}</p>
             ))}
           </section>
         </section>
