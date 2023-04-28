@@ -44,11 +44,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 40px;
     height: 40px;
     gap: 1rem;
-    margin-top: 2rem;
-    border: 1px solid black;
+    margin: 2rem;
   }
   
   .wordLetter {
@@ -58,6 +56,7 @@
     width: 40px;
     height: 40px;
     justify-content: center;
+    align-items: center;
     border: 1px solid black;
 
   }
@@ -93,6 +92,12 @@
 
   .missedLetters {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin: 2rem;
+    
   }
 
 
@@ -100,12 +105,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    margin-left: 2rem;
     font-size: 20px;
     transform: rotate(30deg);
-    width: 30px;
-    height: 30px;
+    gap: .5rem;
+    padding: .5rem;
     border: 1px solid black;
-    background-color:bisque;
+    background-color:rgb(195, 132, 56);
+    opacity: 0.5;
   }

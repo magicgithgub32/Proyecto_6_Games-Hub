@@ -22,20 +22,18 @@ const Hangman = () => {
       setWord(newWord);
     }
     setisStarted(!isStarted);
-
-    console.log(isStarted);
+    setGuess([]);
+    setMissedLetters([]);
   };
 
   const checkLetter = (letterGuessed) => {
     let isLetterFound = false;
-    let correctGuessCount = 0;
+    let livesLeft = word.length;
     for (let i = 0; i < word.length; i++) {
       if (word[i] === letterGuessed && !guess.includes(letterGuessed)) {
         isLetterFound = true;
         setGuess([...guess, letterGuessed]);
-      }
-      if (guess.includes(word[i])) {
-        correctGuessCount++;
+        setVisible(true);
       }
     }
     if (
@@ -44,9 +42,7 @@ const Hangman = () => {
       !guess.includes(letterGuessed)
     ) {
       setMissedLetters([...missedLetters, letterGuessed]);
-    }
-    if (correctGuessCount === word.length) {
-      setVisible(true);
+      livesLeft--;
     }
   };
 

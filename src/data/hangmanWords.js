@@ -14,4 +14,5 @@ export const hangmanWords = [
   "SAPPHIRE",
   "GESTURE",
   "VIBRANT",
+  "HALO",
 ];
