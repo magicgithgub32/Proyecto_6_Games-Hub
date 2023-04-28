@@ -60,7 +60,7 @@ const Hangman = () => {
       !guess.includes(letterGuessed)
     ) {
       setMissedLetters([...missedLetters, letterGuessed]);
-      setLives([lives.slice(0, -1)]);
+      setLives(lives.slice(0, -1));
     }
   };
 
@@ -104,7 +104,7 @@ const Hangman = () => {
           <div className="livesRow">
             {word.split("").map((letter, j) => (
               <div key={j} className="leftLives">
-                <img src="../1up.png" />
+                <img src="../1up.png" alt="life" />
               </div>
             ))}
             {/* {leftLiveshandler()} */}
