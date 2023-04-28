@@ -45,24 +45,26 @@ const Hangman = () => {
   //   return lives;
   // };
 
-  const checkLetter = (letterGuessed) => {
-    let isLetterFound = false;
-    for (let i = 0; i < word.length; i++) {
-      if (word[i] === letterGuessed && !guess.includes(letterGuessed)) {
-        isLetterFound = true;
-        setGuess([...guess, letterGuessed]);
-        setVisible(true);
+  useEffect(() => {
+    const checkLetter = (letterGuessed) => {
+      let isLetterFound = false;
+      for (let i = 0; i < word.length; i++) {
+        if (word[i] === letterGuessed && !guess.includes(letterGuessed)) {
+          isLetterFound = true;
+          setGuess([...guess, letterGuessed]);
+          setVisible(true);
+        }
       }
-    }
-    if (
-      !isLetterFound &&
-      !missedLetters.includes(letterGuessed) &&
-      !guess.includes(letterGuessed)
-    ) {
-      setMissedLetters([...missedLetters, letterGuessed]);
-      setLives(lives.slice(0, -1));
-    }
-  };
+      if (
+        !isLetterFound &&
+        !missedLetters.includes(letterGuessed) &&
+        !guess.includes(letterGuessed)
+      ) {
+        setMissedLetters([...missedLetters, letterGuessed]);
+        setLives(lives.slice(0, -1));
+      }
+    };
+  }, [guess, lives, missedLetters]);
 
   useEffect(() => {
     console.log(guess);
