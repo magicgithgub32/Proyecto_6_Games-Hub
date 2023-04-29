@@ -8,6 +8,7 @@ const Hangman = () => {
   const [isStarted, setisStarted] = useState(false);
   const [word, setWord] = useState("");
   const [guess, setGuess] = useState([]);
+  const [repeatedLetters, setRepeatedLetters] = useState();
   const [missedLetters, setMissedLetters] = useState([]);
   const [lives, setLives] = useState();
   const [letters, setLetters] = useState([]);
@@ -30,6 +31,7 @@ const Hangman = () => {
     }
     setisStarted(!isStarted);
     setGuess([]);
+    setRepeatedLetters(0);
     setMissedLetters([]);
     setLives(6);
   };
@@ -42,6 +44,14 @@ const Hangman = () => {
         setGuess([...guess, letterGuessed]);
       }
     }
+    if (
+      isLetterFound &&
+      word.includes(letterGuessed) &&
+      guess.includes(letterGuessed)
+    ) {
+      setRepeatedLetters(repeatedLetters + 1);
+    }
+
     if (
       !isLetterFound &&
       !missedLetters.includes(letterGuessed) &&
@@ -67,12 +77,28 @@ const Hangman = () => {
   }, [guess]);
 
   useEffect(() => {
+    console.log("Those are the repeated Letters:", repeatedLetters);
+  }, [repeatedLetters]);
+
+  useEffect(() => {
     console.log(missedLetters);
   }, [missedLetters]);
 
   useEffect(() => {
     console.log(lives);
   }, [lives]);
+
+  useEffect(() => {
+    if (word && guess.length + repeatedLetters === word.length) {
+      setTimeout(() => {
+        alert("📚 YOU ARE THE WORD MASTER 📚!!!");
+      }, 200);
+    } else if (word && lives <= 0) {
+      setTimeout(() => {
+        alert("👎 YOU LOSE 👎!!!");
+      }, 200);
+    }
+  }, [guess, word, lives, repeatedLetters]);
 
   return (
     <article className="hangmanWrapper">
