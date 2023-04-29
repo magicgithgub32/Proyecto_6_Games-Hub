@@ -9,11 +9,17 @@ const Hangman = () => {
   const [word, setWord] = useState("");
   const [guess, setGuess] = useState([]);
   const [missedLetters, setMissedLetters] = useState([]);
-  const [visible, setVisible] = useState(false);
-  const [lives, setLives] = useState([]);
+  const [lives, setLives] = useState();
+  const [letters, setLetters] = useState([]);
 
   useEffect(() => {
     console.log(word);
+  }, [word]);
+
+  useEffect(() => {
+    if (word) {
+      setLetters(new Array(word.length).fill(null));
+    }
   }, [word]);
 
   const playButtonHandler = () => {
@@ -25,46 +31,36 @@ const Hangman = () => {
     setisStarted(!isStarted);
     setGuess([]);
     setMissedLetters([]);
-    setLives([]);
+    setLives(6);
   };
 
-  // const leftLiveshandler = () => {
-  //   // const lives = []
-  //   for (let i = 0; i < word.length; i++) {
-  //     lives.push(
-  //       <div key={i} className="leftLives">
-  //         <img src="../1up.png" alt="Life" />
-  //       </div>
-  //     );
-  //     // lives.map((life) => {
-  //     //   <div key={i} className="leftLives">
-  //     //     <img src="../1up.png" alt="Life" />
-  //     //   </div>;
-  //     // });
-  //   }
-  //   return lives;
-  // };
+  const checkLetter = (letterGuessed) => {
+    let isLetterFound = false;
+    for (let i = 0; i < word.length; i++) {
+      if (word[i] === letterGuessed && !guess.includes(letterGuessed)) {
+        isLetterFound = true;
+        setGuess([...guess, letterGuessed]);
+      }
+    }
+    if (
+      !isLetterFound &&
+      !missedLetters.includes(letterGuessed) &&
+      !guess.includes(letterGuessed)
+    ) {
+      setMissedLetters([...missedLetters, letterGuessed]);
+      setLives(lives - 1);
+    }
 
-  useEffect(() => {
-    const checkLetter = (letterGuessed) => {
-      let isLetterFound = false;
-      for (let i = 0; i < word.length; i++) {
+    setLetters(
+      letters.map((letter, i) => {
         if (word[i] === letterGuessed && !guess.includes(letterGuessed)) {
-          isLetterFound = true;
-          setGuess([...guess, letterGuessed]);
-          setVisible(true);
+          return letterGuessed;
+        } else {
+          return letter;
         }
-      }
-      if (
-        !isLetterFound &&
-        !missedLetters.includes(letterGuessed) &&
-        !guess.includes(letterGuessed)
-      ) {
-        setMissedLetters([...missedLetters, letterGuessed]);
-        setLives(lives.slice(0, -1));
-      }
-    };
-  }, [guess, lives, missedLetters]);
+      })
+    );
+  };
 
   useEffect(() => {
     console.log(guess);
@@ -73,6 +69,10 @@ const Hangman = () => {
   useEffect(() => {
     console.log(missedLetters);
   }, [missedLetters]);
+
+  useEffect(() => {
+    console.log(lives);
+  }, [lives]);
 
   return (
     <article className="hangmanWrapper">
@@ -93,23 +93,19 @@ const Hangman = () => {
       {word && isStarted && (
         <section className="hangmanBody">
           <div className="wordContainer">
-            {word.split("").map((letter, i) => (
-              <div
-                className={visible ? "wordLetter" : "nonVisibleWordLetter"}
-                key={i}
-              >
-                {guess.includes(letter) ? letter : " "}
+            {letters.map((letter, i) => (
+              <div className="wordLetter" key={i}>
+                {letter ? letter : " "}
               </div>
             ))}
           </div>
 
           <div className="livesRow">
-            {word.split("").map((letter, j) => (
-              <div key={j} className="leftLives">
-                <img src="../1up.png" alt="life" />
+            {Array.from(Array(6)).map((_, i) => (
+              <div key={i} className="leftLives">
+                {i < lives ? <img src="../1up.png" alt="life" /> : null}
               </div>
             ))}
-            {/* {leftLiveshandler()} */}
           </div>
 
           <section className="hangmanAlphabet">
