@@ -3,6 +3,8 @@ import "./Hangman.css";
 import React, { useState, useEffect } from "react";
 import { hangmanAlphabet } from "../../data/hangmanAlphabet";
 import { hangmanWords } from "../../data/hangmanWords";
+import Hint from "../../components/Hangman/Hint";
+import { checkLetter } from "../../utils/Hangman/checkLetter";
 
 const Hangman = () => {
   const [isStarted, setisStarted] = useState(false);
@@ -72,12 +74,28 @@ const Hangman = () => {
     );
   };
 
+  // <checkLetter
+  //   letterGuessed={letterGuessed}
+  //   letter={letter}
+  //   word={word}
+  //   guess={guess}
+  //   setGuess={setGuess}
+  //   setRepeatedLetters={setRepeatedLetters}
+  //   setMissedLetters={setMissedLetters}
+  //   missedLetters={missedLetters}
+  //   lives={lives}
+  //   setLives={setLives}
+  //   repeatedLetters={repeatedLetters}
+  //   letters={letters}
+  //   setLetters={setLetters}
+  // />;
+
   useEffect(() => {
     console.log(guess);
   }, [guess]);
 
   useEffect(() => {
-    console.log("Those are the repeated Letters:", repeatedLetters);
+    console.log("Those are the number of repeated Letters:", repeatedLetters);
   }, [repeatedLetters]);
 
   useEffect(() => {
@@ -118,6 +136,8 @@ const Hangman = () => {
 
       {word && isStarted && (
         <section className="hangmanBody">
+          <Hint word={word} />
+
           <div className="wordContainer">
             {letters.map((letter, i) => (
               <div className="wordLetter" key={i}>

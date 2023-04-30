@@ -1,0 +1,7 @@
+.hint {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    font-size: 20px;
+  }
