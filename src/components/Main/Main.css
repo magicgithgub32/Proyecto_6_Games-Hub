@@ -9,3 +9,10 @@
     height: 100%;
     width: auto;
 }
+
+.mainWrapper > img {
+    @media (max-width: 460px) {
+        height: 50%;
+        margin-top: 3rem;
+      }
+}
