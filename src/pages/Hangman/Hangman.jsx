@@ -3,8 +3,9 @@ import "./Hangman.css";
 import React, { useState, useEffect } from "react";
 import { hangmanAlphabet } from "../../data/hangmanAlphabet";
 import { hangmanWords } from "../../data/hangmanWords";
-import Hint from "../../components/Hangman/Hint";
 import { checkLetter } from "../../utils/Hangman/checkLetter";
+import Hint from "../../components/Hangman/Hint/Hint";
+import playButtonHandler from "../../components/Hangman/playButtonHandler/PlayButtonHandler";
 
 const Hangman = () => {
   const [isStarted, setisStarted] = useState(false);
@@ -37,6 +38,16 @@ const Hangman = () => {
     setMissedLetters([]);
     setLives(6);
   };
+
+  // <playButtonHandler
+  //   isStarted={isStarted}
+  //   setWord={setWord}
+  //   setisStarted={setisStarted}
+  //   setGuess={setGuess}
+  //   setRepeatedLetters={setRepeatedLetters}
+  //   setMissedLetters={setMissedLetters}
+  //   setLives={setLives}
+  // />;
 
   const checkLetter = (letterGuessed) => {
     let isLetterFound = false;
