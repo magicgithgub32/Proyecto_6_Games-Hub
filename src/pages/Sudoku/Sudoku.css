@@ -21,11 +21,40 @@
     font-size: 30px;
     margin: 1rem;
 }
-
+.sudokuBody {
+    display: flex;
+    justify-content: center;
+}
 .sudokuBoard {
     margin: 2rem;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    border: 1px solid black;
+    grid-template-columns: repeat(9, 40px);
+    grid-template-rows: repeat(9, 40px);
+    border: 2px solid black;
+
+    
 }
+.sudokuBoard {
+    @media screen and (max-width: 380px) {
+        grid-template-columns: repeat(9, 30px);
+        grid-template-rows: repeat(9, 30px);
+    }
+  }
+
+.sudokuCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: .1px solid black;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .sudokuCell {
+    @media screen and (max-width: 380px) {
+        width: 30px;
+         height: 30px;
+    }
+  }

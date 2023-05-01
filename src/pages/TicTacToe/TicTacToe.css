@@ -36,6 +36,12 @@
     justify-items: center;;
     margin: 2rem;
 }
+.tictactoeBoard {
+    @media screen and (max-width: 320px) {
+        grid-template-columns: 50px 50px 50px;
+        grid-template-rows: 50px 50px 50px;
+    }
+}
 
 .board-item {
     background-color: rgba(255, 255, 255, 0.8);
@@ -48,6 +54,13 @@
     width: -moz-available;
     width: fill-available;
     
+}
+
+.board-item {
+    @media screen and (max-width: 320px) {
+        font-size: 30px;
+
+    }
 }
 
   .tictactoeTurn {
