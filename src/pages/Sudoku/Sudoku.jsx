@@ -1,29 +1,32 @@
 import "./Sudoku.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import sudoku, { makepuzzle, solvepuzzle, ratepuzzle } from "sudoku";
 
 const Sudoku = () => {
-  const emptyGrid = [];
-  for (let i = 0; i < 9; i++) {
-    emptyGrid.push(new Array(9).fill(null));
-  }
+  const [isStarted, setIsStarted] = useState(false);
+  const [sudokuBoard, setSudokuBoard] = useState([]);
+  const [solvedBoard, setSolvedBoard] = useState([]);
 
-  const [isStarted, setisStarted] = useState(false);
-  const [grid, setGrid] = useState(emptyGrid);
+  useEffect(() => {
+    if (isStarted) {
+      const newBoard = sudoku.makepuzzle();
+      const solvedBoard = sudoku.solvepuzzle(newBoard);
 
-  const fillBoard = () => {
-    const newGrid = grid.map((row) =>
-      row.map((cell) => Math.floor(Math.random() * 9) + 1)
-    );
-    setGrid(newGrid);
-  };
+      setSudokuBoard(newBoard);
+      setSolvedBoard(solvedBoard);
+    }
+  }, [isStarted]);
 
   const playButtonHandler = () => {
-    if (!isStarted) {
-      fillBoard();
-    }
-    setisStarted(!isStarted);
+    setIsStarted(!isStarted);
   };
+
+  const seeSolution = () => {
+    setSudokuBoard(solvedBoard);
+  };
+
+  console.log(sudokuBoard);
 
   return (
     <article className="sudokuWrapper">
@@ -32,34 +35,28 @@ const Sudoku = () => {
           <button className="homeButton">Home</button>
         </Link>
       </div>
-
       <section className="sudokuHeader">
         <h1 className="title">SUDOKU</h1>
 
         <button className="playButton" onClick={playButtonHandler}>
-          {isStarted ? "STOP" : "PLAY"}
+          {isStarted ? "NEW" : "PLAY"}
+        </button>
+
+        <button className="solButton" onClick={seeSolution}>
+          {isStarted ? "SEE SOLUTION" : ""}
         </button>
       </section>
 
       {isStarted && (
         <section className="sudokuBody">
           <div className="sudokuBoard">
-            {(() => {
-              const cells = [];
-              for (let i = 0; i < 81; i++) {
-                const row = Math.floor(i / 9);
-                const col = i % 9;
-                cells.push(
-                  <input
-                    key={i}
-                    className="sudokuCell"
-                    value={grid[row][col] || ""}
-                    readOnly
-                  />
-                );
-              }
-              return cells;
-            })()}
+            {sudokuBoard.map((cell, index) => (
+              <input
+                className="sudokuCell"
+                key={index}
+                defaultValue={cell !== null ? cell + 1 : ""}
+              />
+            ))}
           </div>
         </section>
       )}
