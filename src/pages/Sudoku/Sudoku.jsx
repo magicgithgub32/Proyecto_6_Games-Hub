@@ -26,6 +26,13 @@ const Sudoku = () => {
     setSudokuBoard(solvedBoard);
   };
 
+  const checkBoard = () => {
+    if (sudokuBoard) {
+      const solved = sudoku.solvepuzzle(sudokuBoard);
+      return solved;
+    }
+  };
+
   console.log(sudokuBoard);
 
   return (
@@ -42,9 +49,18 @@ const Sudoku = () => {
           {isStarted ? "NEW" : "PLAY"}
         </button>
 
-        <button className="solButton" onClick={seeSolution}>
-          {isStarted ? "SEE SOLUTION" : ""}
-        </button>
+        <section className="solutionsSection">
+          <button
+            onClick={seeSolution}
+            className={isStarted ? "solButton" : "disabledSolButton"}
+          >
+            SEE SOLUTION
+          </button>
+
+          <button onClick={checkBoard} className="checkSolButton">
+            CHECK
+          </button>
+        </section>
       </section>
 
       {isStarted && (
@@ -54,6 +70,7 @@ const Sudoku = () => {
               <input
                 className="sudokuCell"
                 key={index}
+                maxLength={1}
                 defaultValue={cell !== null ? cell + 1 : ""}
               />
             ))}

@@ -120,7 +120,7 @@ const Hangman = () => {
   useEffect(() => {
     if (word && guess.length + repeatedLetters === word.length) {
       setTimeout(() => {
-        alert("📚 YOU ARE THE WORD MASTER 📚!!!");
+        alert("📚 YOU ARE THE WORDS MASTER 📚!!!");
       }, 200);
     } else if (word && lives <= 0) {
       setTimeout(() => {

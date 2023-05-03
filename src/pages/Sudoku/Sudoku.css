@@ -1,6 +1,7 @@
 .homeButtonContainer {
     display: flex;
     justify-content: flex-end;
+    margin: .5rem;
 }
 
 .homeButton {
@@ -24,6 +25,17 @@
     display: flex;
     justify-content: center;
 }
+
+.solutionsSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+}
+
+
 .sudokuBoard {
     margin: .5rem;
     display: grid;
@@ -41,13 +53,12 @@
 
 .sudokuCell {
     display: flex;
-    justify-content: center;
-    align-content: center;
     width: 40px;
     height: 40px;
     border: .1px solid black;
     font-size: 30px;
     background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
   }
 
   .sudokuCell {
@@ -55,4 +66,9 @@
         width: 30px;
          height: 30px;
     }
+  }
+
+  .disabledSolButton {
+    pointer-events: none;
+    opacity: 0.5;
   }
