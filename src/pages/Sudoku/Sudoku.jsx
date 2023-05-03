@@ -20,20 +20,27 @@ const Sudoku = () => {
 
   const playButtonHandler = () => {
     setIsStarted(!isStarted);
+    setSudokuBoard([]);
   };
 
   const seeSolution = () => {
     setSudokuBoard(solvedBoard);
   };
 
-  const checkBoard = () => {
-    if (sudokuBoard) {
-      const solved = sudoku.solvepuzzle(sudokuBoard);
-      return solved;
+  console.log(isStarted);
+
+  const checkMyBoard = () => {
+    const parsedBoard = sudokuBoard.map((cell) => parseInt(cell));
+
+    if (parsedBoard.every((cell, index) => cell === solvedBoard[index])) {
+      alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾");
+    } else {
+      alert("Your solution is incorrect.");
     }
   };
 
   console.log(sudokuBoard);
+  console.log(solvedBoard);
 
   return (
     <article className="sudokuWrapper">
@@ -46,18 +53,21 @@ const Sudoku = () => {
         <h1 className="title">SUDOKU</h1>
 
         <button className="playButton" onClick={playButtonHandler}>
-          {isStarted ? "NEW" : "PLAY"}
+          {isStarted ? "NEW GAME" : "PLAY"}
         </button>
 
         <section className="solutionsSection">
           <button
             onClick={seeSolution}
-            className={isStarted ? "solButton" : "disabledSolButton"}
+            className={isStarted ? "solButton" : "disabledButton"}
           >
             SEE SOLUTION
           </button>
 
-          <button onClick={checkBoard} className="checkSolButton">
+          <button
+            onClick={checkMyBoard}
+            className={isStarted ? "checkSolButton" : "disabledButton"}
+          >
             CHECK
           </button>
         </section>

@@ -68,7 +68,8 @@
     }
   }
 
-  .disabledSolButton {
-    pointer-events: none;
-    opacity: 0.5;
+  .disabledButton {
+    /* pointer-events: none;
+    opacity: 0.5; */
+    display: none;
   }
