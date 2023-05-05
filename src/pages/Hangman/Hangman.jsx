@@ -3,9 +3,7 @@ import "./Hangman.css";
 import React, { useState, useEffect } from "react";
 import { hangmanAlphabet } from "../../data/hangmanAlphabet";
 import { hangmanWords } from "../../data/hangmanWords";
-import { checkLetter } from "../../utils/Hangman/checkLetter";
 import Hint from "../../components/Hangman/Hint/Hint";
-import playButtonHandler from "../../components/Hangman/playButtonHandler/PlayButtonHandler";
 
 const Hangman = () => {
   const [isStarted, setisStarted] = useState(false);
@@ -39,84 +37,6 @@ const Hangman = () => {
     setLives(6);
   };
 
-  // <playButtonHandler
-  //   isStarted={isStarted}
-  //   setWord={setWord}
-  //   setisStarted={setisStarted}
-  //   setGuess={setGuess}
-  //   setRepeatedLetters={setRepeatedLetters}
-  //   setMissedLetters={setMissedLetters}
-  //   setLives={setLives}
-  // />;
-
-  const checkLetter = (letterGuessed) => {
-    let isLetterFound = false;
-    for (let i = 0; i < word.length; i++) {
-      if (word[i] === letterGuessed && !guess.includes(letterGuessed)) {
-        isLetterFound = true;
-        setGuess([...guess, letterGuessed]);
-      }
-    }
-    if (
-      isLetterFound &&
-      word.includes(letterGuessed) &&
-      guess.includes(letterGuessed)
-    ) {
-      setRepeatedLetters(repeatedLetters + 1);
-    }
-
-    if (
-      !isLetterFound &&
-      !missedLetters.includes(letterGuessed) &&
-      !guess.includes(letterGuessed)
-    ) {
-      setMissedLetters([...missedLetters, letterGuessed]);
-      setLives(lives - 1);
-    }
-
-    setLetters(
-      letters.map((letter, i) => {
-        if (word[i] === letterGuessed && !guess.includes(letterGuessed)) {
-          return letterGuessed;
-        } else {
-          return letter;
-        }
-      })
-    );
-  };
-
-  // <checkLetter
-  //   letterGuessed={letterGuessed}
-  //   letter={letter}
-  //   word={word}
-  //   guess={guess}
-  //   setGuess={setGuess}
-  //   setRepeatedLetters={setRepeatedLetters}
-  //   setMissedLetters={setMissedLetters}
-  //   missedLetters={missedLetters}
-  //   lives={lives}
-  //   setLives={setLives}
-  //   repeatedLetters={repeatedLetters}
-  //   letters={letters}
-  //   setLetters={setLetters}
-  // />;
-
-  useEffect(() => {
-    console.log(guess);
-  }, [guess]);
-
-  useEffect(() => {
-    console.log("Those are the number of repeated Letters:", repeatedLetters);
-  }, [repeatedLetters]);
-
-  useEffect(() => {
-    console.log(missedLetters);
-  }, [missedLetters]);
-
-  useEffect(() => {
-    console.log(lives);
-  }, [lives]);
-
   useEffect(() => {
     if (word && guess.length + repeatedLetters === word.length) {
       setTimeout(() => {
@@ -128,6 +48,40 @@ const Hangman = () => {
       }, 200);
     }
   }, [guess, word, lives, repeatedLetters]);
+
+  const checkLetter = (letterGuessed) => {
+    let isLetterFound = false;
+    let correctGuesses = 0;
+
+    for (let i = 0; i < word.length; i++) {
+      if (word[i] === letterGuessed) {
+        isLetterFound = true;
+        if (!guess.includes(letterGuessed)) {
+          correctGuesses++;
+        }
+      }
+    }
+
+    if (isLetterFound && !guess.includes(letterGuessed)) {
+      setGuess([...guess, letterGuessed]);
+      setRepeatedLetters(repeatedLetters + correctGuesses - 1);
+    }
+
+    if (!isLetterFound && !missedLetters.includes(letterGuessed)) {
+      setMissedLetters([...missedLetters, letterGuessed]);
+      setLives(lives - 1);
+    }
+
+    setLetters(
+      letters.map((letter, i) => {
+        if (word[i] === letterGuessed) {
+          return letterGuessed;
+        } else {
+          return letter;
+        }
+      })
+    );
+  };
 
   return (
     <article className="hangmanWrapper">
