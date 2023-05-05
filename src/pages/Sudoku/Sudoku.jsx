@@ -7,6 +7,8 @@ const Sudoku = () => {
   const [isStarted, setIsStarted] = useState(false);
   const [sudokuBoard, setSudokuBoard] = useState([]);
   const [solvedBoard, setSolvedBoard] = useState([]);
+  const [isFinished, setIsFinished] = useState(false);
+  const [parsedBoard, setParsedBoard] = useState([]);
 
   useEffect(() => {
     if (isStarted) {
@@ -27,11 +29,20 @@ const Sudoku = () => {
     setSudokuBoard(solvedBoard);
   };
 
-  console.log(isStarted);
+  useEffect(() => {
+    setParsedBoard(sudokuBoard.map((cell) => parseInt(cell)));
+  }, [sudokuBoard]);
+
+  // useEffect(() => {
+  //   if (!sudokuBoard.includes(null)) {
+  //     setParsedBoard(sudokuBoard.map((cell) => parseInt(cell)));
+  //     setIsFinished(!sudokuBoard.includes(null) && !sudokuBoard.includes(NaN));
+  //   }
+  // }, [sudokuBoard]);
+
+  const isBoardComplete = sudokuBoard.every((cell) => cell !== null);
 
   const checkMyBoard = () => {
-    const parsedBoard = sudokuBoard.map((cell) => parseInt(cell));
-
     if (parsedBoard.every((cell, index) => cell === solvedBoard[index])) {
       alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾");
     } else {
@@ -64,12 +75,11 @@ const Sudoku = () => {
             SEE SOLUTION
           </button>
 
-          <button
-            onClick={checkMyBoard}
-            className={isStarted ? "checkSolButton" : "disabledButton"}
-          >
-            CHECK
-          </button>
+          {isBoardComplete && isStarted && (
+            <button onClick={checkMyBoard} className="checkSolButton">
+              CHECK
+            </button>
+          )}
         </section>
       </section>
 
