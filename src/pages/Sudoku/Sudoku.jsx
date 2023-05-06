@@ -9,6 +9,7 @@ const Sudoku = () => {
   const [solvedBoard, setSolvedBoard] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
   const [parsedBoard, setParsedBoard] = useState([]);
+  const [solutionSeen, setSolutionSeen] = useState(false);
 
   useEffect(() => {
     if (isStarted) {
@@ -20,6 +21,20 @@ const Sudoku = () => {
     }
   }, [isStarted]);
 
+  useEffect(() => {
+    setParsedBoard(sudokuBoard.map((cell) => parseInt(cell)));
+  }, [sudokuBoard]);
+
+  useEffect(() => {
+    const isBoardCompleted =
+      !sudokuBoard.includes(null) && !sudokuBoard.includes(NaN);
+    setIsFinished(isBoardCompleted);
+
+    if (isFinished && parsedBoard.includes(0)) {
+      alert("Please, remove any 0 you inserted.");
+    }
+  }, [parsedBoard]);
+
   const playButtonHandler = () => {
     setIsStarted(!isStarted);
     setSudokuBoard([]);
@@ -27,20 +42,8 @@ const Sudoku = () => {
 
   const seeSolution = () => {
     setSudokuBoard(solvedBoard);
+    setSolutionSeen(true);
   };
-
-  useEffect(() => {
-    setParsedBoard(sudokuBoard.map((cell) => parseInt(cell)));
-  }, [sudokuBoard]);
-
-  // useEffect(() => {
-  //   if (!sudokuBoard.includes(null)) {
-  //     setParsedBoard(sudokuBoard.map((cell) => parseInt(cell)));
-  //     setIsFinished(!sudokuBoard.includes(null) && !sudokuBoard.includes(NaN));
-  //   }
-  // }, [sudokuBoard]);
-
-  const isBoardComplete = sudokuBoard.every((cell) => cell !== null);
 
   const checkMyBoard = () => {
     if (parsedBoard.every((cell, index) => cell === solvedBoard[index])) {
@@ -52,6 +55,7 @@ const Sudoku = () => {
 
   console.log(sudokuBoard);
   console.log(solvedBoard);
+  console.log(parsedBoard);
 
   return (
     <article className="sudokuWrapper">
@@ -75,7 +79,7 @@ const Sudoku = () => {
             SEE SOLUTION
           </button>
 
-          {isBoardComplete && isStarted && (
+          {!solutionSeen && isFinished && isStarted && (
             <button onClick={checkMyBoard} className="checkSolButton">
               CHECK
             </button>
@@ -92,6 +96,19 @@ const Sudoku = () => {
                 key={index}
                 maxLength={1}
                 defaultValue={cell !== null ? cell + 1 : ""}
+                onChange={(e) => {
+                  const inputValue = e.target.value;
+                  if (
+                    inputValue === "" ||
+                    (inputValue >= 1 && inputValue <= 9)
+                  ) {
+                    const newBoard = [...sudokuBoard];
+                    newBoard[index] = inputValue
+                      ? parseInt(inputValue) - 1
+                      : null;
+                    setSudokuBoard(newBoard);
+                  }
+                }}
               />
             ))}
           </div>
