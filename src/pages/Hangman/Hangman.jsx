@@ -72,6 +72,14 @@ const Hangman = () => {
       setLives(lives - 1);
     }
 
+    if (!isLetterFound && missedLetters.includes(letterGuessed)) {
+      alert("You already tried with " + letterGuessed);
+    }
+
+    if (isLetterFound && guess.includes(letterGuessed)) {
+      alert("You already tried successfully with " + letterGuessed);
+    }
+
     setLetters(
       letters.map((letter, i) => {
         if (word[i] === letterGuessed) {
