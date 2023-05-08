@@ -9,7 +9,7 @@ const Sudoku = () => {
   const [solvedBoard, setSolvedBoard] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
   const [parsedBoard, setParsedBoard] = useState([]);
-  const [solutionSeen, setSolutionSeen] = useState(false);
+  const [showedSolution, setShowedSolution] = useState(false);
 
   useEffect(() => {
     if (isStarted) {
@@ -17,6 +17,7 @@ const Sudoku = () => {
       const solvedBoard = sudoku.solvepuzzle(newBoard);
 
       setSudokuBoard(newBoard);
+
       setSolvedBoard(solvedBoard);
     }
   }, [isStarted]);
@@ -26,27 +27,31 @@ const Sudoku = () => {
   }, [sudokuBoard]);
 
   useEffect(() => {
-    const isBoardCompleted =
-      !sudokuBoard.includes(null) && !sudokuBoard.includes(NaN);
+    const isBoardCompleted = !parsedBoard.includes(NaN);
     setIsFinished(isBoardCompleted);
-
-    if (isFinished && parsedBoard.includes(0)) {
-      alert("Please, remove any 0 you inserted.");
-    }
-  }, [parsedBoard]);
+  }, [parsedBoard, sudokuBoard]);
 
   const playButtonHandler = () => {
     setIsStarted(!isStarted);
     setSudokuBoard([]);
+    setIsFinished(false);
+    setShowedSolution(false);
   };
 
   const seeSolution = () => {
+    setShowedSolution(true);
+
     setSudokuBoard(solvedBoard);
-    setSolutionSeen(true);
   };
 
   const checkMyBoard = () => {
-    if (parsedBoard.every((cell, index) => cell === solvedBoard[index])) {
+    const parsedBoardMinusOne = parsedBoard.map((cell) => cell - 1);
+    const solvedBoardMinusOne = solvedBoard.map((cell) => cell - 1);
+    if (
+      parsedBoardMinusOne.every(
+        (cell, index) => cell === solvedBoardMinusOne[index]
+      )
+    ) {
       alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾");
     } else {
       alert("Your solution is incorrect.");
@@ -79,7 +84,7 @@ const Sudoku = () => {
             SEE SOLUTION
           </button>
 
-          {!solutionSeen && isFinished && isStarted && (
+          {!showedSolution && isFinished && isStarted && (
             <button onClick={checkMyBoard} className="checkSolButton">
               CHECK
             </button>
@@ -95,18 +100,27 @@ const Sudoku = () => {
                 className="sudokuCell"
                 key={index}
                 maxLength={1}
-                defaultValue={cell !== null ? cell + 1 : ""}
-                onChange={(e) => {
+                type="number"
+                min={1}
+                max={9}
+                defaultValue={
+                  showedSolution
+                    ? solvedBoard[index]
+                    : cell !== null
+                    ? cell + 1
+                    : ""
+                }
+                onInput={(e) => {
                   const inputValue = e.target.value;
                   if (
                     inputValue === "" ||
                     (inputValue >= 1 && inputValue <= 9)
                   ) {
                     const newBoard = [...sudokuBoard];
-                    newBoard[index] = inputValue
-                      ? parseInt(inputValue) - 1
-                      : null;
+                    newBoard[index] = inputValue ? parseInt(inputValue) : null;
                     setSudokuBoard(newBoard);
+                  } else {
+                    e.target.value = "";
                   }
                 }}
               />

@@ -61,6 +61,15 @@
     text-align: center;
   }
 
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance:none;
+    margin:0;
+  }
+
+  
+
+
   .sudokuCell {
     @media screen and (max-width: 380px) {
         width: 30px;
