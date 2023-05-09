@@ -46,7 +46,7 @@ const Sudoku = () => {
 
   const checkMyBoard = () => {
     const parsedBoardMinusOne = parsedBoard.map((cell) => cell - 1);
-    const solvedBoardMinusOne = solvedBoard.map((cell) => cell - 1);
+    const solvedBoardMinusOne = solvedBoard.map((cell) => parseInt(cell) - 1);
     if (
       parsedBoardMinusOne.every(
         (cell, index) => cell === solvedBoardMinusOne[index]
@@ -119,6 +119,7 @@ const Sudoku = () => {
                     const newBoard = [...sudokuBoard];
                     newBoard[index] = inputValue ? parseInt(inputValue) : null;
                     setSudokuBoard(newBoard);
+                    setParsedBoard(newBoard.map((cell) => parseInt(cell)));
                   } else {
                     e.target.value = "";
                   }
