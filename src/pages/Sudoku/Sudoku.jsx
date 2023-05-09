@@ -40,18 +40,16 @@ const Sudoku = () => {
 
   const seeSolution = () => {
     setShowedSolution(true);
-
     setSudokuBoard(solvedBoard);
   };
 
   const checkMyBoard = () => {
-    const parsedBoardMinusOne = parsedBoard.map((cell) => cell - 1);
-    const solvedBoardMinusOne = solvedBoard.map((cell) => parseInt(cell) - 1);
-    if (
-      parsedBoardMinusOne.every(
-        (cell, index) => cell === solvedBoardMinusOne[index]
-      )
-    ) {
+    // const solved = sudoku.solvepuzzle(parsedBoard);
+    // solved
+    //   ? alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾")
+    //   : alert("Your solution is incorrect.");
+
+    if (parsedBoard.every((cell, index) => cell === solvedBoard[index] + 1)) {
       alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾");
     } else {
       alert("Your solution is incorrect.");
@@ -105,7 +103,7 @@ const Sudoku = () => {
                 max={9}
                 defaultValue={
                   showedSolution
-                    ? solvedBoard[index]
+                    ? solvedBoard[index] + 1
                     : cell !== null
                     ? cell + 1
                     : ""
