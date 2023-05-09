@@ -5,26 +5,25 @@ import sudoku, { makepuzzle, solvepuzzle, ratepuzzle } from "sudoku";
 
 const Sudoku = () => {
   const [isStarted, setIsStarted] = useState(false);
-  const [sudokuBoard, setSudokuBoard] = useState([]);
-  const [solvedBoard, setSolvedBoard] = useState([]);
+  const [sudokuBoard, setSudokuBoard] = useState(Array(81).fill(null));
+  const [parsedBoard, setParsedBoard] = useState(Array(81).fill(null));
+  const [solvedBoard, setSolvedBoard] = useState(Array(81).fill(null));
   const [isFinished, setIsFinished] = useState(false);
-  const [parsedBoard, setParsedBoard] = useState([]);
   const [showedSolution, setShowedSolution] = useState(false);
 
   useEffect(() => {
     if (isStarted) {
-      const newBoard = sudoku.makepuzzle();
-      const solvedBoard = sudoku.solvepuzzle(newBoard);
+      // const newBoard = sudoku.makepuzzle();
 
-      setSudokuBoard(newBoard);
+      // setSudokuBoard(newBoard);
 
-      setSolvedBoard(solvedBoard);
+      setSolvedBoard(solvepuzzle(sudokuBoard));
     }
   }, [isStarted]);
 
-  useEffect(() => {
-    setParsedBoard(sudokuBoard.map((cell) => parseInt(cell)));
-  }, [sudokuBoard]);
+  // useEffect(() => {
+  //   setParsedBoard(sudokuBoard.map((cell) => parseInt(cell)));
+  // }, [sudokuBoard]);
 
   useEffect(() => {
     const isBoardCompleted = !parsedBoard.includes(NaN);
@@ -33,32 +32,31 @@ const Sudoku = () => {
 
   const playButtonHandler = () => {
     setIsStarted(!isStarted);
-    setSudokuBoard([]);
+    setSudokuBoard(makepuzzle);
     setIsFinished(false);
     setShowedSolution(false);
   };
 
+  useEffect(() => {
+    setParsedBoard(sudokuBoard);
+  }, [sudokuBoard]);
+
   const seeSolution = () => {
     setShowedSolution(true);
-    setSudokuBoard(solvedBoard);
+    setSudokuBoard(solvepuzzle);
   };
 
   const checkMyBoard = () => {
-    // const solved = sudoku.solvepuzzle(parsedBoard);
-    // solved
-    //   ? alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾")
-    //   : alert("Your solution is incorrect.");
-
-    if (parsedBoard.every((cell, index) => cell === solvedBoard[index] + 1)) {
+    if (parsedBoard.every((cell, index) => cell === sudokuBoard[index])) {
       alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾");
     } else {
       alert("Your solution is incorrect.");
     }
   };
 
-  console.log(sudokuBoard);
-  console.log(solvedBoard);
-  console.log(parsedBoard);
+  console.log("SudokuBoard:", sudokuBoard);
+  console.log("ParsedBoard:", parsedBoard);
+  console.log("SolvedBoard:", solvedBoard);
 
   return (
     <article className="sudokuWrapper">
@@ -103,7 +101,7 @@ const Sudoku = () => {
                 max={9}
                 defaultValue={
                   showedSolution
-                    ? solvedBoard[index] + 1
+                    ? sudokuBoard[index] + 1
                     : cell !== null
                     ? cell + 1
                     : ""
