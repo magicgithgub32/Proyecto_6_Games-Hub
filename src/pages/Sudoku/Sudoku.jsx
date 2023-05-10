@@ -13,20 +13,13 @@ const Sudoku = () => {
 
   useEffect(() => {
     if (isStarted) {
-      // const newBoard = sudoku.makepuzzle();
-
-      // setSudokuBoard(newBoard);
-
       setSolvedBoard(solvepuzzle(sudokuBoard));
     }
   }, [isStarted]);
 
-  // useEffect(() => {
-  //   setParsedBoard(sudokuBoard.map((cell) => parseInt(cell)));
-  // }, [sudokuBoard]);
-
   useEffect(() => {
-    const isBoardCompleted = !parsedBoard.includes(NaN);
+    const isBoardCompleted =
+      !parsedBoard.includes(NaN) && !parsedBoard.includes(null);
     setIsFinished(isBoardCompleted);
   }, [parsedBoard, sudokuBoard]);
 

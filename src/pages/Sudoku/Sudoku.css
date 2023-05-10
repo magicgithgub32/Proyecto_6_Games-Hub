@@ -41,7 +41,6 @@
     display: grid;
     grid-template-columns: repeat(9, 40px);
     grid-template-rows: repeat(9, 40px);
-
     
 }
 .sudokuBoard {
@@ -50,6 +49,8 @@
         grid-template-rows: repeat(9, 30px);
     }
   }
+
+
 
 .sudokuCell {
     display: flex;
@@ -67,8 +68,6 @@
     margin:0;
   }
 
-  
-
 
   .sudokuCell {
     @media screen and (max-width: 380px) {
@@ -78,7 +77,35 @@
   }
 
   .disabledButton {
-    /* pointer-events: none;
-    opacity: 0.5; */
     display: none;
   }
+
+  .sudokuCell:nth-child(n):nth-child(-n+9) {
+    border-top-width: 4px;
+  }
+
+
+   .sudokuCell:nth-child(n+73):nth-child(-n+81) {
+    border-bottom-width: 4px;
+  }
+
+
+  .sudokuCell:nth-child(3n) {
+    border-right-width: 4px;
+  }
+
+  .sudokuCell:nth-child(9n+1) {
+    border-left-width: 4px;
+  }
+
+  .sudokuCell:nth-child(27n + 28),
+  .sudokuCell:nth-child(27n + 29),
+  .sudokuCell:nth-child(27n + 30),
+  .sudokuCell:nth-child(27n + 31),
+  .sudokuCell:nth-child(27n + 32),
+  .sudokuCell:nth-child(27n + 33),
+  .sudokuCell:nth-child(27n + 34),
+  .sudokuCell:nth-child(27n + 35),
+  .sudokuCell:nth-child(27n + 36) {
+        border-top-width: 4px;
+      }
