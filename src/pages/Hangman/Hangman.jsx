@@ -1,13 +1,12 @@
-import { Link } from "react-router-dom";
 import "./Hangman.css";
 import React, { useState, useEffect } from "react";
 import { hangmanAlphabet } from "../../data/hangmanAlphabet";
-import { hangmanWords } from "../../data/hangmanWords";
 import Hint from "../../components/Hangman/Hint/Hint";
 import BackHome from "../../components/BackHome";
+import PlayButton from "../../components/Hangman/PlayButton";
 
 const Hangman = () => {
-  const [isStarted, setisStarted] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
   const [word, setWord] = useState("");
   const [guess, setGuess] = useState([]);
   const [repeatedLetters, setRepeatedLetters] = useState();
@@ -24,19 +23,6 @@ const Hangman = () => {
       setLetters(new Array(word.length).fill(null));
     }
   }, [word]);
-
-  const playButtonHandler = () => {
-    if (!isStarted) {
-      const newWord =
-        hangmanWords[Math.floor(Math.random() * hangmanWords.length)];
-      setWord(newWord);
-    }
-    setisStarted(!isStarted);
-    setGuess([]);
-    setRepeatedLetters(0);
-    setMissedLetters([]);
-    setLives(6);
-  };
 
   useEffect(() => {
     if (word && guess.length + repeatedLetters === word.length) {
@@ -99,9 +85,15 @@ const Hangman = () => {
       <section className="hangmanHeader">
         <h1 className="title">HANGMAN</h1>
 
-        <button className="playButton" onClick={playButtonHandler}>
-          {isStarted ? "STOP" : "PLAY"}
-        </button>
+        <PlayButton
+          isStarted={isStarted}
+          setWord={setWord}
+          setIsStarted={setIsStarted}
+          setGuess={setGuess}
+          setRepeatedLetters={setRepeatedLetters}
+          setMissedLetters={setMissedLetters}
+          setLives={setLives}
+        />
       </section>
 
       {word && isStarted && (

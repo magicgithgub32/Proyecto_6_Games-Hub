@@ -1,11 +1,12 @@
 import React from "react";
 
-const CheckMyBoard = ({ parsedBoard, solvedBoard }) => {
+const CheckMyBoard = ({ parsedBoard, solvedBoard, setWrongAnswer }) => {
   const checkMyBoard = () => {
     if (parsedBoard.every((cell, index) => cell === solvedBoard[index])) {
       alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾");
     } else {
       alert("Your solution is incorrect.");
+      setWrongAnswer(true);
     }
   };
 

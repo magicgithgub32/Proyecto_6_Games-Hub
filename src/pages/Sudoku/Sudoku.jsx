@@ -56,7 +56,6 @@ const Sudoku = () => {
             setSudokuBoard={setSudokuBoard}
             isStarted={isStarted}
             solvedBoard={solvedBoard}
-            setParsedBoard={setParsedBoard}
           />
 
           {!showedSolution && isFinished && isStarted && (
