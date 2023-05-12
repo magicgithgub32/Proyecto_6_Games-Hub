@@ -1,9 +1,11 @@
 import "./Sudoku.css";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import sudoku, { makepuzzle, solvepuzzle } from "sudoku";
 import SeeSolution from "../../components/Sudoku/SeeSolution";
 import PlayButton from "../../components/Sudoku/PlayButton";
+import CheckMyBoard from "../../components/Sudoku/CheckMyBoard";
+import BackHome from "../../components/BackHome";
+import SudokuBoard from "../../components/Sudoku/sudokuBoard/SudokuBoard";
 
 const Sudoku = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -29,30 +31,14 @@ const Sudoku = () => {
     setParsedBoard(sudokuBoard);
   }, [sudokuBoard]);
 
-  // const seeSolution = () => {
-  //   setShowedSolution(true);
-  //   setSudokuBoard(solvepuzzle);
-  // };
-
-  const checkMyBoard = () => {
-    if (parsedBoard.every((cell, index) => cell === solvedBoard[index])) {
-      alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾");
-    } else {
-      alert("Your solution is incorrect.");
-    }
-  };
-
   console.log("SudokuBoard:", sudokuBoard);
   console.log("ParsedBoard:", parsedBoard);
   console.log("SolvedBoard:", solvedBoard);
 
   return (
     <article className="sudokuWrapper">
-      <div className="homeButtonContainer">
-        <Link to={`/`}>
-          <button className="homeButton">Home</button>
-        </Link>
-      </div>
+      <BackHome />
+
       <section className="sudokuHeader">
         <h1 className="title">SUDOKU</h1>
 
@@ -65,65 +51,28 @@ const Sudoku = () => {
         />
 
         <section className="solutionsSection">
-          {/* <button
-            onClick={seeSolution}
-            className={isStarted ? "solButton" : "disabledButton"}
-          >
-            SEE SOLUTION
-          </button> */}
-
           <SeeSolution
             setShowedSolution={setShowedSolution}
             setSudokuBoard={setSudokuBoard}
             isStarted={isStarted}
             solvedBoard={solvedBoard}
+            setParsedBoard={setParsedBoard}
           />
 
           {!showedSolution && isFinished && isStarted && (
-            <button onClick={checkMyBoard} className="checkSolButton">
-              CHECK
-            </button>
+            <CheckMyBoard parsedBoard={parsedBoard} solvedBoard={solvedBoard} />
           )}
         </section>
       </section>
 
       {isStarted && (
         <section className="sudokuBody">
-          <div className="sudokuBoard">
-            {sudokuBoard.map((cell, index) => (
-              <input
-                className="sudokuCell"
-                key={index}
-                maxLength={1}
-                type="number"
-                min={1}
-                max={9}
-                defaultValue={
-                  showedSolution
-                    ? sudokuBoard[index] + 1
-                    : cell !== null
-                    ? cell + 1
-                    : ""
-                }
-                onInput={(e) => {
-                  const inputValue = e.target.value;
-                  if (
-                    inputValue === "" ||
-                    (inputValue >= 1 && inputValue <= 9)
-                  ) {
-                    const newBoard = [...sudokuBoard];
-                    newBoard[index] = inputValue
-                      ? parseInt(inputValue) - 1
-                      : null;
-                    setSudokuBoard(newBoard);
-                    setParsedBoard(newBoard.map((cell) => parseInt(cell)));
-                  } else {
-                    e.target.value = "";
-                  }
-                }}
-              />
-            ))}
-          </div>
+          <SudokuBoard
+            sudokuBoard={sudokuBoard}
+            setSudokuBoard={setSudokuBoard}
+            showedSolution={showedSolution}
+            setParsedBoard={setParsedBoard}
+          />
         </section>
       )}
     </article>

@@ -2,6 +2,7 @@ import "./TicTacToe.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TictactoeBoardContainer from "../../components/TicTacToe/TicTacToeBoardContainer";
+import BackHome from "../../components/BackHome";
 
 const TicTacToe = () => {
   const [isStarted, setisStarted] = useState(false);
@@ -59,11 +60,7 @@ const TicTacToe = () => {
 
   return (
     <article className="tictactoeWrapper">
-      <div className="homeButtonContainer">
-        <Link to={`/`}>
-          <button className="homeButton">Home</button>
-        </Link>
-      </div>
+      <BackHome />
 
       <section className="tictactoeHeader">
         <h1 className="title">TIC-TAC-TOE</h1>

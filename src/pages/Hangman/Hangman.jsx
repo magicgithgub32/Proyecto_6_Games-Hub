@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { hangmanAlphabet } from "../../data/hangmanAlphabet";
 import { hangmanWords } from "../../data/hangmanWords";
 import Hint from "../../components/Hangman/Hint/Hint";
+import BackHome from "../../components/BackHome";
 
 const Hangman = () => {
   const [isStarted, setisStarted] = useState(false);
@@ -93,11 +94,7 @@ const Hangman = () => {
 
   return (
     <article className="hangmanWrapper">
-      <div className="homeButtonContainer">
-        <Link to={`/`}>
-          <button className="homeButton">Home</button>
-        </Link>
-      </div>
+      <BackHome />
 
       <section className="hangmanHeader">
         <h1 className="title">HANGMAN</h1>

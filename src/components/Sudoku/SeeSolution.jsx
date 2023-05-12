@@ -6,10 +6,12 @@ const SeeSolution = ({
   setSudokuBoard,
   isStarted,
   solvedBoard,
+  setParsedBoard,
 }) => {
   const seeSolution = () => {
     setShowedSolution(true);
     setSudokuBoard(solvedBoard);
+    setParsedBoard(solvedBoard);
   };
 
   return (
