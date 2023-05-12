@@ -2,6 +2,7 @@ import "./Sudoku.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import sudoku, { makepuzzle, solvepuzzle } from "sudoku";
+import PlayButton from "../../components/Sudoku/PlayButton";
 
 const Sudoku = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -22,13 +23,6 @@ const Sudoku = () => {
       !parsedBoard.includes(NaN) && !parsedBoard.includes(null);
     setIsFinished(isBoardCompleted);
   }, [parsedBoard, sudokuBoard]);
-
-  const playButtonHandler = () => {
-    setIsStarted(!isStarted);
-    setSudokuBoard(makepuzzle);
-    setIsFinished(false);
-    setShowedSolution(false);
-  };
 
   useEffect(() => {
     setParsedBoard(sudokuBoard);
@@ -61,9 +55,13 @@ const Sudoku = () => {
       <section className="sudokuHeader">
         <h1 className="title">SUDOKU</h1>
 
-        <button className="playButton" onClick={playButtonHandler}>
-          {isStarted ? "NEW GAME" : "PLAY"}
-        </button>
+        <PlayButton
+          setIsStarted={setIsStarted}
+          isStarted={isStarted}
+          setSudokuBoard={setSudokuBoard}
+          setIsFinished={setIsFinished}
+          setShowedSolution={setShowedSolution}
+        />
 
         <section className="solutionsSection">
           <button
