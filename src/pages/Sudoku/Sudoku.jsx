@@ -1,7 +1,7 @@
 import "./Sudoku.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import sudoku, { makepuzzle, solvepuzzle, ratepuzzle } from "sudoku";
+import sudoku, { makepuzzle, solvepuzzle } from "sudoku";
 
 const Sudoku = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -40,7 +40,7 @@ const Sudoku = () => {
   };
 
   const checkMyBoard = () => {
-    if (parsedBoard.every((cell, index) => cell === sudokuBoard[index])) {
+    if (parsedBoard.every((cell, index) => cell === solvedBoard[index])) {
       alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾");
     } else {
       alert("Your solution is incorrect.");
@@ -106,7 +106,9 @@ const Sudoku = () => {
                     (inputValue >= 1 && inputValue <= 9)
                   ) {
                     const newBoard = [...sudokuBoard];
-                    newBoard[index] = inputValue ? parseInt(inputValue) : null;
+                    newBoard[index] = inputValue
+                      ? parseInt(inputValue) - 1
+                      : null;
                     setSudokuBoard(newBoard);
                     setParsedBoard(newBoard.map((cell) => parseInt(cell)));
                   } else {
