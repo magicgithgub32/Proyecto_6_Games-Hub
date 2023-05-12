@@ -2,6 +2,7 @@ import "./Sudoku.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import sudoku, { makepuzzle, solvepuzzle } from "sudoku";
+import SeeSolution from "../../components/Sudoku/SeeSolution";
 import PlayButton from "../../components/Sudoku/PlayButton";
 
 const Sudoku = () => {
@@ -28,10 +29,10 @@ const Sudoku = () => {
     setParsedBoard(sudokuBoard);
   }, [sudokuBoard]);
 
-  const seeSolution = () => {
-    setShowedSolution(true);
-    setSudokuBoard(solvepuzzle);
-  };
+  // const seeSolution = () => {
+  //   setShowedSolution(true);
+  //   setSudokuBoard(solvepuzzle);
+  // };
 
   const checkMyBoard = () => {
     if (parsedBoard.every((cell, index) => cell === solvedBoard[index])) {
@@ -64,12 +65,19 @@ const Sudoku = () => {
         />
 
         <section className="solutionsSection">
-          <button
+          {/* <button
             onClick={seeSolution}
             className={isStarted ? "solButton" : "disabledButton"}
           >
             SEE SOLUTION
-          </button>
+          </button> */}
+
+          <SeeSolution
+            setShowedSolution={setShowedSolution}
+            setSudokuBoard={setSudokuBoard}
+            isStarted={isStarted}
+            solvedBoard={solvedBoard}
+          />
 
           {!showedSolution && isFinished && isStarted && (
             <button onClick={checkMyBoard} className="checkSolButton">
