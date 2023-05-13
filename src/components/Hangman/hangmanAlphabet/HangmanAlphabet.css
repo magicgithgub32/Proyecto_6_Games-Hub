@@ -1,0 +1,16 @@
+.hangmanAlphabet {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;;
+    gap: .3rem;
+    flex-wrap: wrap;
+}
+
+.letterButton {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    color:rgba(0, 0, 0, 0.8);
+    font-size: 20px;
+    width: 40px;
+    text-align: center;
+}

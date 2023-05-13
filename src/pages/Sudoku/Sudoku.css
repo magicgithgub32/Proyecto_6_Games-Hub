@@ -1,14 +1,4 @@
- .homeButtonContainer {
-    display: flex;
-    justify-content: flex-end;
-    margin: .5rem;
-}
-
-.homeButton {
-    width: 80px;
-}
-
-.sudokuHeader {
+ .sudokuHeader {
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,13 +1,5 @@
 
-.homeButtonContainer {
-    display: flex;
-    justify-content: flex-end;
-    margin: 2rem;
-}
 
-.homeButton {
-    width: 80px;
-}
 
 .tictactoeHeader {
     display: flex;
@@ -23,9 +15,7 @@
     margin: 1rem;
 }
 
-.playButton {
-    width: 80px;
-}
+
 
 .tictactoeBoard {
     display: grid;

@@ -1,0 +1,32 @@
+.livesRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .livesRow {
+    @media screen and (max-width: 320px) {
+      gap: .5rem;
+    }
+  }
+  
+  .leftLives {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .leftLives img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .leftLives img {
+    @media screen and (max-width: 320px) {
+      width: 30px;
+      height: 30px;
+
+  }
+  }

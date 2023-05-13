@@ -1,0 +1,9 @@
+.homeButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin: 2rem;
+}
+
+.homeButton {
+    width: 80px;
+}

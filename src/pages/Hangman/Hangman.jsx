@@ -2,8 +2,14 @@ import "./Hangman.css";
 import React, { useState, useEffect } from "react";
 import { hangmanAlphabet } from "../../data/hangmanAlphabet";
 import Hint from "../../components/Hangman/Hint/Hint";
-import BackHome from "../../components/BackHome";
-import PlayButton from "../../components/Hangman/PlayButton";
+import BackHome from "../../components/backHome/BackHome";
+import PlayButton from "../../components/Hangman/playButton/PlayButton";
+import WordContainer from "../../components/Hangman/wordContainer/WordContainer";
+import LivesRow from "../../components/Hangman/livesRow/LivesRow";
+import HangmanAlphabet from "../../components/Hangman/hangmanAlphabet/HangmanAlphabet";
+import MissedLetters from "../../components/Hangman/missedLetters/MissedLetters";
+// import { checkGame } from "../../utils/hangman/checkGame";
+// import { checkLetter } from "../../utils/hangman/checkLetter";
 
 const Hangman = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -100,39 +106,16 @@ const Hangman = () => {
         <section className="hangmanBody">
           <Hint word={word} />
 
-          <div className="wordContainer">
-            {letters.map((letter, i) => (
-              <div className="wordLetter" key={i}>
-                {letter ? letter : " "}
-              </div>
-            ))}
-          </div>
+          <WordContainer letters={letters} />
 
-          <div className="livesRow">
-            {Array.from(Array(6)).map((_, i) => (
-              <div key={i} className="leftLives">
-                {i < lives ? <img src="../1up.png" alt="life" /> : null}
-              </div>
-            ))}
-          </div>
+          <LivesRow lives={lives} />
 
-          <section className="hangmanAlphabet">
-            {hangmanAlphabet.map((letter) => (
-              <button
-                onClick={() => checkLetter(letter)}
-                key={letter}
-                className="letterButton"
-              >
-                {letter}
-              </button>
-            ))}
-          </section>
+          <HangmanAlphabet
+            hangmanAlphabet={hangmanAlphabet}
+            checkLetter={checkLetter}
+          />
 
-          <section className="missedLetters">
-            {missedLetters.map((missedletter, index) => (
-              <p key={index}>{missedletter}</p>
-            ))}
-          </section>
+          <MissedLetters missedLetters={missedLetters} />
         </section>
       )}
     </article>

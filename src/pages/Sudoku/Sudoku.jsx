@@ -4,7 +4,7 @@ import sudoku, { makepuzzle, solvepuzzle } from "sudoku";
 import SeeSolution from "../../components/Sudoku/SeeSolution";
 import PlayButton from "../../components/Sudoku/PlayButton";
 import CheckMyBoard from "../../components/Sudoku/CheckMyBoard";
-import BackHome from "../../components/BackHome";
+import BackHome from "../../components/backHome/BackHome";
 import SudokuBoard from "../../components/Sudoku/sudokuBoard/SudokuBoard";
 
 const Sudoku = () => {

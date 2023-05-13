@@ -1,5 +1,6 @@
 import React from "react";
-import { hangmanWords } from "../../data/hangmanWords";
+import { hangmanWords } from "../../../data/hangmanWords";
+import "./PlayButton.css";
 
 const PlayButton = ({
   isStarted,
