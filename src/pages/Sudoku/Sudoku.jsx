@@ -6,6 +6,7 @@ import PlayButton from "../../components/Sudoku/PlayButton";
 import CheckMyBoard from "../../components/Sudoku/CheckMyBoard";
 import BackHome from "../../components/backHome/BackHome";
 import SudokuBoard from "../../components/Sudoku/sudokuBoard/SudokuBoard";
+import GameTitle from "../../components/gameTitle/GameTitle";
 
 const Sudoku = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -40,7 +41,7 @@ const Sudoku = () => {
       <BackHome />
 
       <section className="sudokuHeader">
-        <h1 className="title">SUDOKU</h1>
+        <GameTitle title="SUDOKU" />
 
         <PlayButton
           setIsStarted={setIsStarted}

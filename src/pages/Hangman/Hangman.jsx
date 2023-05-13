@@ -8,8 +8,8 @@ import WordContainer from "../../components/Hangman/wordContainer/WordContainer"
 import LivesRow from "../../components/Hangman/livesRow/LivesRow";
 import HangmanAlphabet from "../../components/Hangman/hangmanAlphabet/HangmanAlphabet";
 import MissedLetters from "../../components/Hangman/missedLetters/MissedLetters";
-// import { checkGame } from "../../utils/hangman/checkGame";
-// import { checkLetter } from "../../utils/hangman/checkLetter";
+import { checkGame } from "../../utils/hangman/checkgame";
+import GameTitle from "../../components/gameTitle/GameTitle";
 
 const Hangman = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -31,16 +31,8 @@ const Hangman = () => {
   }, [word]);
 
   useEffect(() => {
-    if (word && guess.length + repeatedLetters === word.length) {
-      setTimeout(() => {
-        alert("📚 YOU ARE THE WORDS MASTER 📚!!!");
-      }, 200);
-    } else if (word && lives <= 0) {
-      setTimeout(() => {
-        alert("👎 YOU LOSE 👎!!!");
-      }, 200);
-    }
-  }, [guess, word, lives, repeatedLetters]);
+    checkGame(word, guess, repeatedLetters, lives);
+  }, [word, guess, repeatedLetters, lives]);
 
   const checkLetter = (letterGuessed) => {
     let isLetterFound = false;
@@ -89,7 +81,7 @@ const Hangman = () => {
       <BackHome />
 
       <section className="hangmanHeader">
-        <h1 className="title">HANGMAN</h1>
+        <GameTitle title="HANGMAN" />
 
         <PlayButton
           isStarted={isStarted}
@@ -110,10 +102,12 @@ const Hangman = () => {
 
           <LivesRow lives={lives} />
 
-          <HangmanAlphabet
-            hangmanAlphabet={hangmanAlphabet}
-            checkLetter={checkLetter}
-          />
+          {lives > 0 && (
+            <HangmanAlphabet
+              hangmanAlphabet={hangmanAlphabet}
+              checkLetter={checkLetter}
+            />
+          )}
 
           <MissedLetters missedLetters={missedLetters} />
         </section>

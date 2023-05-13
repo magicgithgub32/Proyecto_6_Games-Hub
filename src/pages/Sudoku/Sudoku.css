@@ -6,11 +6,7 @@
     gap: .5rem;
 }
 
-.title {
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-}
+
 .sudokuBody {
     display: flex;
     justify-content: center;
@@ -26,80 +22,3 @@
 }
 
 
-.sudokuBoard {
-    margin: .5rem;
-    display: grid;
-    grid-template-columns: repeat(9, 40px);
-    grid-template-rows: repeat(9, 40px);
-    
-}
-.sudokuBoard {
-    @media screen and (max-width: 380px) {
-        grid-template-columns: repeat(9, 30px);
-        grid-template-rows: repeat(9, 30px);
-    }
-  }
-
-
-
-.sudokuCell {
-    display: flex;
-    width: 40px;
-    height: 40px;
-    border: .1px solid rgb(178, 171, 171);
-    font-size: 30px;
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-  }
-
-
-
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance:none;
-    margin:0;
-  }
-
-
-  .sudokuCell {
-    @media screen and (max-width: 380px) {
-        width: 30px;
-         height: 30px;
-    }
-  }
-
-  .disabledButton {
-    display: none;
-  }
-
-  .sudokuCell:nth-child(n):nth-child(-n+9) {
-    border-top-width: 4px;
-  }
-
-
-   .sudokuCell:nth-child(n+73):nth-child(-n+81) {
-    border-bottom-width: 4px;
-  }
-
-
-  .sudokuCell:nth-child(3n) {
-    border-right-width: 4px;
-  }
-
-  .sudokuCell:nth-child(9n+1) {
-    border-left-width: 4px;
-  }
-
-  .sudokuCell:nth-child(27n + 28),
-  .sudokuCell:nth-child(27n + 29),
-  .sudokuCell:nth-child(27n + 30),
-  .sudokuCell:nth-child(27n + 31),
-  .sudokuCell:nth-child(27n + 32),
-  .sudokuCell:nth-child(27n + 33),
-  .sudokuCell:nth-child(27n + 34),
-  .sudokuCell:nth-child(27n + 35),
-  .sudokuCell:nth-child(27n + 36) {
-        border-top-width: 4px;
-      } 
-
-      

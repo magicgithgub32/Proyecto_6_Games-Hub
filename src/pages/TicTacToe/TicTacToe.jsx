@@ -1,9 +1,10 @@
 import "./TicTacToe.css";
 import React, { useState, useEffect } from "react";
-import TictactoeBoardContainer from "../../components/TicTacToe/TicTacToeBoardContainer";
+import TictactoeBoardContainer from "../../components/TicTacToe/tictactoeBoardContainer/TicTacToeBoardContainer";
 import BackHome from "../../components/backHome/BackHome";
 import PlayButton from "../../components/TicTacToe/PlayButton";
 import { checkGame } from "../../utils/ticTacToe/checkGame";
+import GameTitle from "../../components/gameTitle/GameTitle";
 
 const TicTacToe = () => {
   const [isStarted, setisStarted] = useState(false);
@@ -23,7 +24,7 @@ const TicTacToe = () => {
       <BackHome />
 
       <section className="tictactoeHeader">
-        <h1 className="title">TIC-TAC-TOE</h1>
+        <GameTitle title="TIC-TAC-TOE" />
 
         <PlayButton
           setisStarted={setisStarted}

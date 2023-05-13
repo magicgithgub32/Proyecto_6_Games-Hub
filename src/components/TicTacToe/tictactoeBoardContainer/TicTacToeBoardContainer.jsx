@@ -1,4 +1,5 @@
 import React from "react";
+import "./TicTacToeBoardContainer.css";
 
 const TictactoeBoardContainer = ({
   board,
