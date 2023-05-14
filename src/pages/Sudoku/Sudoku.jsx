@@ -1,5 +1,11 @@
 import "./Sudoku.css";
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useContext,
+  createContext,
+} from "react";
 import sudoku, { makepuzzle, solvepuzzle } from "sudoku";
 import SeeSolution from "../../components/Sudoku/SeeSolution";
 import PlayButton from "../../components/Sudoku/PlayButton";
@@ -15,6 +21,10 @@ const Sudoku = () => {
   const [solvedBoard, setSolvedBoard] = useState(Array(81).fill(null));
   const [isFinished, setIsFinished] = useState(false);
   const [showedSolution, setShowedSolution] = useState(false);
+
+  const SudokuContext = createContext();
+
+  const inputRefs = useRef([]);
 
   useEffect(() => {
     if (isStarted) {
@@ -49,6 +59,7 @@ const Sudoku = () => {
           setSudokuBoard={setSudokuBoard}
           setIsFinished={setIsFinished}
           setShowedSolution={setShowedSolution}
+          inputRefs={inputRefs}
         />
 
         <section className="solutionsSection">
@@ -72,6 +83,7 @@ const Sudoku = () => {
             setSudokuBoard={setSudokuBoard}
             showedSolution={showedSolution}
             setParsedBoard={setParsedBoard}
+            inputRefs={inputRefs}
           />
         </section>
       )}

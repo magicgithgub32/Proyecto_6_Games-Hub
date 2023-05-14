@@ -7,12 +7,14 @@ const PlayButton = ({
   setSudokuBoard,
   setShowedSolution,
   setIsFinished,
+  inputRefs,
 }) => {
   const playButtonHandler = () => {
     setIsStarted(!isStarted);
     setSudokuBoard(makepuzzle());
     setIsFinished(false);
     setShowedSolution(false);
+    inputRefs.current.map((inputRef) => (inputRef.className = "sudokuCell"));
   };
 
   return (

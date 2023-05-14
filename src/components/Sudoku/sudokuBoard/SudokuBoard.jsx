@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./SudokuBoard.css";
 
 const SudokuBoard = ({
@@ -6,12 +6,15 @@ const SudokuBoard = ({
   showedSolution,
   setSudokuBoard,
   setParsedBoard,
+  inputRefs,
 }) => {
+  inputRefs.current.map((inputRef) => (inputRef.className = "sudokuCell"));
+
   return (
     <div className="sudokuBoard">
       {sudokuBoard.map((cell, index) => (
         <input
-          className="sudokuCell"
+          className={showedSolution ? "sudokuCell" : "userCell"}
           key={index}
           maxLength={1}
           type="number"
