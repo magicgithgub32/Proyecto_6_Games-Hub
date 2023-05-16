@@ -1,4 +1,4 @@
-import { makepuzzle } from "sudoku";
+import { makepuzzle, solvepuzzle } from "sudoku";
 import React, { useEffect } from "react";
 
 const PlayButton = ({
@@ -9,16 +9,14 @@ const PlayButton = ({
   setIsFinished,
   setParsedBoard,
   parsedBoard,
+  setSolvedBoard,
+  solvedBoard,
 }) => {
   const playButtonHandler = () => {
     setIsStarted(!isStarted);
-    setParsedBoard(makepuzzle());
+    setParsedBoard(makepuzzle);
     setIsFinished(false);
     setShowedSolution(false);
-
-    if (isStarted) {
-      setSudokuBoard(...parsedBoard);
-    }
   };
 
   return (

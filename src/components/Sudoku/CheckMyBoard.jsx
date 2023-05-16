@@ -1,6 +1,12 @@
 import React from "react";
+import { solvepuzzle } from "sudoku";
 
-const CheckMyBoard = ({ parsedBoard, solvedBoard }) => {
+const CheckMyBoard = ({
+  parsedBoard,
+  solvedBoard,
+  setSolvedBoard,
+  setParsedBoard,
+}) => {
   const checkMyBoard = () => {
     if (parsedBoard.every((cell, index) => cell === solvedBoard[index])) {
       alert("🍾 YOU WIN, MASTER OF NUMBERS! 🍾");

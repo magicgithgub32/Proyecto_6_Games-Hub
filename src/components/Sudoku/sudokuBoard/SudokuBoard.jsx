@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./SudokuBoard.css";
+import { solvepuzzle } from "sudoku";
 
 const SudokuBoard = ({
   sudokuBoard,
@@ -29,17 +30,14 @@ const SudokuBoard = ({
           // disabled={sudokuBoard[index] + 1}
           onInput={(e) => {
             const inputValue = e.target.value;
-            if (!showedSolution) {
-              if (inputValue === "" || (inputValue >= 1 && inputValue <= 9)) {
-                const newBoard = [...parsedBoard];
-                newBoard[index] = inputValue ? parseInt(inputValue) - 1 : null;
 
-                setParsedBoard(newBoard.map((cell) => parseInt(cell)));
-              } else {
-                e.target.value = "";
-              }
+            if (inputValue === "" || (inputValue >= 1 && inputValue <= 9)) {
+              const newBoard = [...parsedBoard];
+              newBoard[index] = inputValue ? parseInt(inputValue) - 1 : null;
+
+              setParsedBoard(newBoard.map((cell) => parseInt(cell)));
             } else {
-              setParsedBoard(solvedBoard);
+              e.target.value = "";
             }
           }}
         />

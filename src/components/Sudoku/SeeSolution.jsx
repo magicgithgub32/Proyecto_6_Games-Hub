@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { makepuzzle, solvepuzzle } from "sudoku";
-solvepuzzle;
 
 const SeeSolution = ({
   setShowedSolution,
@@ -8,12 +7,15 @@ const SeeSolution = ({
   isStarted,
   solvedBoard,
   setParsedBoard,
+  parsedBoard,
+  setSolvedBoard,
 }) => {
   const seeSolution = () => {
     setShowedSolution(true);
+    // setSolvedBoard(solvepuzzle(parsedBoard));
     setParsedBoard(solvedBoard);
 
-    // setSudokuBoard(solvedBoard);
+    setSudokuBoard(solvedBoard);
   };
 
   return (
