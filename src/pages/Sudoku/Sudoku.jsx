@@ -1,12 +1,6 @@
 import "./Sudoku.css";
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  useContext,
-  createContext,
-} from "react";
-import sudoku, { makepuzzle, solvepuzzle } from "sudoku";
+import React, { useEffect, useState } from "react";
+import sudoku, { solvepuzzle } from "sudoku";
 import SeeSolution from "../../components/Sudoku/SeeSolution";
 import PlayButton from "../../components/Sudoku/PlayButton";
 import CheckMyBoard from "../../components/Sudoku/CheckMyBoard";
@@ -22,13 +16,9 @@ const Sudoku = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [showedSolution, setShowedSolution] = useState(false);
 
-  const SudokuContext = createContext();
-
-  const inputRefs = useRef([]);
-
   useEffect(() => {
     if (isStarted) {
-      setSolvedBoard(solvepuzzle(sudokuBoard));
+      setSolvedBoard(solvepuzzle(parsedBoard));
     }
   }, [isStarted]);
 
@@ -38,9 +28,9 @@ const Sudoku = () => {
     setIsFinished(isBoardCompleted);
   }, [parsedBoard, sudokuBoard]);
 
-  useEffect(() => {
-    setParsedBoard(sudokuBoard);
-  }, [sudokuBoard]);
+  // useEffect(() => {
+  //   setParsedBoard(sudokuBoard);
+  // }, [sudokuBoard]);
 
   console.log("SudokuBoard:", sudokuBoard);
   console.log("ParsedBoard:", parsedBoard);
@@ -59,13 +49,15 @@ const Sudoku = () => {
           setSudokuBoard={setSudokuBoard}
           setIsFinished={setIsFinished}
           setShowedSolution={setShowedSolution}
-          inputRefs={inputRefs}
+          setParsedBoard={setParsedBoard}
+          parsedBoard={parsedBoard}
         />
 
         <section className="solutionsSection">
           <SeeSolution
             setShowedSolution={setShowedSolution}
             setSudokuBoard={setSudokuBoard}
+            setParsedBoard={setParsedBoard}
             isStarted={isStarted}
             solvedBoard={solvedBoard}
           />
@@ -83,7 +75,8 @@ const Sudoku = () => {
             setSudokuBoard={setSudokuBoard}
             showedSolution={showedSolution}
             setParsedBoard={setParsedBoard}
-            inputRefs={inputRefs}
+            parsedBoard={parsedBoard}
+            solvedBoard={solvedBoard}
           />
         </section>
       )}

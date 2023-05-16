@@ -6,15 +6,14 @@ const SudokuBoard = ({
   showedSolution,
   setSudokuBoard,
   setParsedBoard,
-  inputRefs,
+  parsedBoard,
+  solvedBoard,
 }) => {
-  inputRefs.current.map((inputRef) => (inputRef.className = "sudokuCell"));
-
   return (
     <div className="sudokuBoard">
-      {sudokuBoard.map((cell, index) => (
+      {parsedBoard.map((cell, index) => (
         <input
-          className={showedSolution ? "sudokuCell" : "userCell"}
+          className="sudokuCell"
           key={index}
           maxLength={1}
           type="number"
@@ -22,20 +21,25 @@ const SudokuBoard = ({
           max={9}
           defaultValue={
             showedSolution
-              ? sudokuBoard[index] + 1
+              ? solvedBoard[index] + 1
               : cell !== null
               ? cell + 1
               : ""
           }
+          // disabled={sudokuBoard[index] + 1}
           onInput={(e) => {
             const inputValue = e.target.value;
-            if (inputValue === "" || (inputValue >= 1 && inputValue <= 9)) {
-              const newBoard = [...sudokuBoard];
-              newBoard[index] = inputValue ? parseInt(inputValue) - 1 : null;
-              setSudokuBoard(newBoard);
-              setParsedBoard(newBoard.map((cell) => parseInt(cell)));
+            if (!showedSolution) {
+              if (inputValue === "" || (inputValue >= 1 && inputValue <= 9)) {
+                const newBoard = [...parsedBoard];
+                newBoard[index] = inputValue ? parseInt(inputValue) - 1 : null;
+
+                setParsedBoard(newBoard.map((cell) => parseInt(cell)));
+              } else {
+                e.target.value = "";
+              }
             } else {
-              e.target.value = "";
+              setParsedBoard(solvedBoard);
             }
           }}
         />

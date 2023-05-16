@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+import { makepuzzle, solvepuzzle } from "sudoku";
+solvepuzzle;
 
 const SeeSolution = ({
   setShowedSolution,
   setSudokuBoard,
   isStarted,
   solvedBoard,
+  setParsedBoard,
 }) => {
   const seeSolution = () => {
     setShowedSolution(true);
-    setSudokuBoard(solvedBoard);
+    setParsedBoard(solvedBoard);
+
+    // setSudokuBoard(solvedBoard);
   };
 
   return (

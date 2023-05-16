@@ -1,5 +1,5 @@
 import { makepuzzle } from "sudoku";
-import React from "react";
+import React, { useEffect } from "react";
 
 const PlayButton = ({
   setIsStarted,
@@ -7,14 +7,18 @@ const PlayButton = ({
   setSudokuBoard,
   setShowedSolution,
   setIsFinished,
-  inputRefs,
+  setParsedBoard,
+  parsedBoard,
 }) => {
   const playButtonHandler = () => {
     setIsStarted(!isStarted);
-    setSudokuBoard(makepuzzle());
+    setParsedBoard(makepuzzle());
     setIsFinished(false);
     setShowedSolution(false);
-    inputRefs.current.map((inputRef) => (inputRef.className = "sudokuCell"));
+
+    if (isStarted) {
+      setSudokuBoard(...parsedBoard);
+    }
   };
 
   return (
