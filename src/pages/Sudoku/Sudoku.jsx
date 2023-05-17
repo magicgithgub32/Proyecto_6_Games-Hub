@@ -1,5 +1,5 @@
 import "./Sudoku.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import sudoku, { solvepuzzle } from "sudoku";
 import SeeSolution from "../../components/Sudoku/SeeSolution";
 import PlayButton from "../../components/Sudoku/PlayButton";
@@ -10,11 +10,12 @@ import GameTitle from "../../components/gameTitle/GameTitle";
 
 const Sudoku = () => {
   const [isStarted, setIsStarted] = useState(false);
-  // const [sudokuBoard, setSudokuBoard] = useState(Array(81).fill(null));
   const [parsedBoard, setParsedBoard] = useState(Array(81).fill(null));
   const [solvedBoard, setSolvedBoard] = useState(Array(81).fill(null));
   const [isFinished, setIsFinished] = useState(false);
   const [showedSolution, setShowedSolution] = useState(false);
+
+  const inputRefs = useRef([]);
 
   useEffect(() => {
     if (isStarted) {
@@ -26,11 +27,6 @@ const Sudoku = () => {
     setIsFinished(!parsedBoard.includes(NaN) && !parsedBoard.includes(null));
   }, [parsedBoard]);
 
-  // useEffect(() => {
-  //   setSudokuBoard(parsedBoard);
-  // }, [parsedBoard]);
-
-  // console.log("SudokuBoard:", sudokuBoard);
   console.log("ParsedBoard:", parsedBoard);
   console.log("SolvedBoard:", solvedBoard);
 
@@ -47,6 +43,7 @@ const Sudoku = () => {
           setIsFinished={setIsFinished}
           setShowedSolution={setShowedSolution}
           setParsedBoard={setParsedBoard}
+          inputRefs={inputRefs}
         />
 
         <section className="solutionsSection">
@@ -70,7 +67,7 @@ const Sudoku = () => {
             setParsedBoard={setParsedBoard}
             parsedBoard={parsedBoard}
             solvedBoard={solvedBoard}
-            // sudokuBoard={sudokuBoard}
+            inputRefs={inputRefs}
           />
         </section>
       )}

@@ -6,13 +6,13 @@ const SudokuBoard = ({
   setParsedBoard,
   parsedBoard,
   solvedBoard,
-  sudokuBoard,
+  inputRefs,
 }) => {
   return (
     <div className="sudokuBoard">
       {parsedBoard.map((cell, index) => (
         <input
-          className="sudokuCell"
+          className={"sudokuCell"}
           key={index}
           maxLength={1}
           type="number"
@@ -25,7 +25,6 @@ const SudokuBoard = ({
               ? cell + 1
               : ""
           }
-          // disabled={sudokuBoard[index] + 1}
           onInput={(e) => {
             const inputValue = e.target.value;
 
