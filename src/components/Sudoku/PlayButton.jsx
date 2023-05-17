@@ -1,16 +1,12 @@
 import { makepuzzle, solvepuzzle } from "sudoku";
-import React, { useEffect } from "react";
+import React from "react";
 
 const PlayButton = ({
   setIsStarted,
   isStarted,
-  setSudokuBoard,
   setShowedSolution,
   setIsFinished,
   setParsedBoard,
-  parsedBoard,
-  setSolvedBoard,
-  solvedBoard,
 }) => {
   const playButtonHandler = () => {
     setIsStarted(!isStarted);

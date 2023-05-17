@@ -7,8 +7,6 @@ const SeeSolution = ({
   isStarted,
   solvedBoard,
   setParsedBoard,
-  parsedBoard,
-  setSolvedBoard,
 }) => {
   const seeSolution = () => {
     setShowedSolution(true);

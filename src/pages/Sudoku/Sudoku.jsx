@@ -46,13 +46,9 @@ const Sudoku = () => {
         <PlayButton
           setIsStarted={setIsStarted}
           isStarted={isStarted}
-          setSudokuBoard={setSudokuBoard}
           setIsFinished={setIsFinished}
           setShowedSolution={setShowedSolution}
           setParsedBoard={setParsedBoard}
-          parsedBoard={parsedBoard}
-          setSolvedBoard={setSolvedBoard}
-          solvedBoard={solvedBoard}
         />
 
         <section className="solutionsSection">
@@ -62,17 +58,10 @@ const Sudoku = () => {
             setParsedBoard={setParsedBoard}
             isStarted={isStarted}
             solvedBoard={solvedBoard}
-            parsedBoard={parsedBoard}
-            setSolvedBoard={setSolvedBoard}
           />
 
           {!showedSolution && isFinished && isStarted && (
-            <CheckMyBoard
-              parsedBoard={parsedBoard}
-              solvedBoard={solvedBoard}
-              setSolvedBoard={setSolvedBoard}
-              setParsedBoard={setParsedBoard}
-            />
+            <CheckMyBoard parsedBoard={parsedBoard} solvedBoard={solvedBoard} />
           )}
         </section>
       </section>
@@ -80,8 +69,6 @@ const Sudoku = () => {
       {isStarted && (
         <section className="sudokuBody">
           <SudokuBoard
-            sudokuBoard={sudokuBoard}
-            setSudokuBoard={setSudokuBoard}
             showedSolution={showedSolution}
             setParsedBoard={setParsedBoard}
             parsedBoard={parsedBoard}

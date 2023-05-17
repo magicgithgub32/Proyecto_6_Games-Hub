@@ -1,11 +1,8 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import "./SudokuBoard.css";
-import { solvepuzzle } from "sudoku";
 
 const SudokuBoard = ({
-  sudokuBoard,
   showedSolution,
-  setSudokuBoard,
   setParsedBoard,
   parsedBoard,
   solvedBoard,
