@@ -1,5 +1,4 @@
 import React from "react";
-import { solvepuzzle } from "sudoku";
 
 const CheckMyBoard = ({ parsedBoard, solvedBoard }) => {
   const checkMyBoard = () => {

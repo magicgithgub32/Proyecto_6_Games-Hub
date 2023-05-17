@@ -23,9 +23,7 @@ const Sudoku = () => {
   }, [isStarted]);
 
   useEffect(() => {
-    const isBoardCompleted =
-      !parsedBoard.includes(NaN) && !parsedBoard.includes(null);
-    setIsFinished(isBoardCompleted);
+    setIsFinished(!parsedBoard.includes(NaN) && !parsedBoard.includes(null));
   }, [parsedBoard]);
 
   useEffect(() => {
@@ -54,7 +52,6 @@ const Sudoku = () => {
         <section className="solutionsSection">
           <SeeSolution
             setShowedSolution={setShowedSolution}
-            setSudokuBoard={setSudokuBoard}
             setParsedBoard={setParsedBoard}
             isStarted={isStarted}
             solvedBoard={solvedBoard}
@@ -73,6 +70,7 @@ const Sudoku = () => {
             setParsedBoard={setParsedBoard}
             parsedBoard={parsedBoard}
             solvedBoard={solvedBoard}
+            sudokuBoard={sudokuBoard}
           />
         </section>
       )}

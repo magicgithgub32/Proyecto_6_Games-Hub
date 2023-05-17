@@ -6,6 +6,7 @@ const SudokuBoard = ({
   setParsedBoard,
   parsedBoard,
   solvedBoard,
+  sudokuBoard,
 }) => {
   return (
     <div className="sudokuBoard">
