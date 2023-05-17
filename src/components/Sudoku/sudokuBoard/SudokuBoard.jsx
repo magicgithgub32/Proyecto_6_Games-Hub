@@ -18,7 +18,7 @@ const SudokuBoard = ({
           type="number"
           min={1}
           max={9}
-          defaultValue={
+          value={
             showedSolution
               ? solvedBoard[index] + 1
               : cell !== null

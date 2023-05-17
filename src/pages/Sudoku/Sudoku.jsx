@@ -10,7 +10,7 @@ import GameTitle from "../../components/gameTitle/GameTitle";
 
 const Sudoku = () => {
   const [isStarted, setIsStarted] = useState(false);
-  const [sudokuBoard, setSudokuBoard] = useState(Array(81).fill(null));
+  // const [sudokuBoard, setSudokuBoard] = useState(Array(81).fill(null));
   const [parsedBoard, setParsedBoard] = useState(Array(81).fill(null));
   const [solvedBoard, setSolvedBoard] = useState(Array(81).fill(null));
   const [isFinished, setIsFinished] = useState(false);
@@ -26,11 +26,11 @@ const Sudoku = () => {
     setIsFinished(!parsedBoard.includes(NaN) && !parsedBoard.includes(null));
   }, [parsedBoard]);
 
-  useEffect(() => {
-    setSudokuBoard(parsedBoard);
-  }, [parsedBoard]);
+  // useEffect(() => {
+  //   setSudokuBoard(parsedBoard);
+  // }, [parsedBoard]);
 
-  console.log("SudokuBoard:", sudokuBoard);
+  // console.log("SudokuBoard:", sudokuBoard);
   console.log("ParsedBoard:", parsedBoard);
   console.log("SolvedBoard:", solvedBoard);
 
@@ -70,7 +70,7 @@ const Sudoku = () => {
             setParsedBoard={setParsedBoard}
             parsedBoard={parsedBoard}
             solvedBoard={solvedBoard}
-            sudokuBoard={sudokuBoard}
+            // sudokuBoard={sudokuBoard}
           />
         </section>
       )}
