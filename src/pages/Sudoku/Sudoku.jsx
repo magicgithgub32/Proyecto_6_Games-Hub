@@ -15,8 +15,6 @@ const Sudoku = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [showedSolution, setShowedSolution] = useState(false);
 
-  const inputRefs = useRef([]);
-
   useEffect(() => {
     if (isStarted) {
       setSolvedBoard(solvepuzzle(parsedBoard));
@@ -43,7 +41,6 @@ const Sudoku = () => {
           setIsFinished={setIsFinished}
           setShowedSolution={setShowedSolution}
           setParsedBoard={setParsedBoard}
-          inputRefs={inputRefs}
         />
 
         <section className="solutionsSection">
@@ -67,7 +64,6 @@ const Sudoku = () => {
             setParsedBoard={setParsedBoard}
             parsedBoard={parsedBoard}
             solvedBoard={solvedBoard}
-            inputRefs={inputRefs}
           />
         </section>
       )}

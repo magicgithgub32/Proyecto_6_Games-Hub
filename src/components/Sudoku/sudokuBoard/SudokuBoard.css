@@ -22,18 +22,7 @@
     text-align: center;
     
   }
-
-
-  .userCell {
-    display: flex;
-    width: 40px;
-    height: 40px;
-    border: .1px solid rgb(178, 171, 171);
-    font-size: 30px;
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    color: blue;
-  }
+  
 
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {

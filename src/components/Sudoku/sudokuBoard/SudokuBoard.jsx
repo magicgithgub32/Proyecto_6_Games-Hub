@@ -6,7 +6,6 @@ const SudokuBoard = ({
   setParsedBoard,
   parsedBoard,
   solvedBoard,
-  inputRefs,
 }) => {
   return (
     <div className="sudokuBoard">
