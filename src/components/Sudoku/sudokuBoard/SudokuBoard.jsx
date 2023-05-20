@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./SudokuBoard.css";
 
 const SudokuBoard = ({
@@ -7,6 +7,16 @@ const SudokuBoard = ({
   parsedBoard,
   solvedBoard,
 }) => {
+  const inputsRef = useRef([]);
+
+  useEffect(() => {
+    inputsRef.current.forEach((input) => {
+      console.log(input);
+      if (input.value !== "") {
+        input.disabled = true;
+      }
+    });
+  }, []);
   return (
     <div className="sudokuBoard">
       {parsedBoard.map((cell, index) => (
@@ -24,6 +34,9 @@ const SudokuBoard = ({
               ? cell + 1
               : ""
           }
+          ref={(element) => {
+            inputsRef.current[index] = element;
+          }}
           onInput={(e) => {
             const inputValue = e.target.value;
 
