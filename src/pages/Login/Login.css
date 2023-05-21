@@ -1,0 +1,17 @@
+form {
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	gap: 1rem;
+    margin: 2rem;
+}
+
+input {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 120px;
+    height: 30px;
+    font-size: 20px;
+}

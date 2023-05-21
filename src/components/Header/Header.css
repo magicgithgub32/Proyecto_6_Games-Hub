@@ -6,6 +6,12 @@
     margin: 2rem;
 }
 
+.loginButton {
+    margin-top: 1rem;
+    /* background-color: var(--button-text-color);
+    color:  var(--button-color); */
+}
+
 .gamesButtons {
     display: flex;
     flex-wrap: wrap;
