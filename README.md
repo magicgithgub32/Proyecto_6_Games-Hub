@@ -1,3 +1,5 @@
+> > > > > > > > > > > > > > > USER ALLOWED: MasterOfGames
+
 Proyecto_6_Games-Hub
 ¡Lo has hecho muy bien para haber llegado hasta aquí! Ahora que estamos entrando a la recta final vamos a avanzar en módulo de `React` haciendo algo grande.
 
@@ -9,6 +11,7 @@ Este proyecto puede llevarse al alcance que cada cual estime posible dentro de l
 
 - **Tres en Raya o Tic-Tac-Toe**
   Tendrás que usar React Router para crear una página o ruta específica para este juego en `/tictactoe`. En la pantalla encontraremos:
+
   - **Un botón para comenzar partida**, que dependa del estado `isStarted`, esta será un `boolean`. Si el juego ha comenzado, el botón debe poder acabar la partida en cualquier momento y resetear la información.
   - **Un mensaje que indique el jugador actual**. Como en este juego usaremos el símbolo `X` para un jugador y el `O` para otro (¡puedes cambiarlos a tu gusto, usa emojis si prefieres!), informaremos de esto en el mensaje. Por ejemplo: `Es el turno de X` o `Es el turno de O`.
   - Un tablero que será un estado que actualizaremoz, y consistirá de un array de arrays de 3x3 en el que tendremos cada `casilla` o `celda` con un valor inicial `null`, aquí un ejemplo:
@@ -41,30 +44,38 @@ Este proyecto puede llevarse al alcance que cada cual estime posible dentro de l
 
   - Te recomendamos comprobar cada caso por separado siempre que un jugador cualquiera añada un nuevo símbolo al tablero (`useEffect` podría ser buena idea para lanzar la comprobación).
   - Cuando el tablero se llene sin un jugador ganador, tendremos un empate y el juego terminará y todo volverá al estado original.
-  Aquí te dejamos un GIF de ejemplo (haz tu tres en raya más bonito 🙏):
-  ![tictactoe.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5a7fd115-a1f0-4188-b29b-1b4e2a2e44e7/tictactoe.gif)
+    Aquí te dejamos un GIF de ejemplo (haz tu tres en raya más bonito 🙏):
+    ![tictactoe.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5a7fd115-a1f0-4188-b29b-1b4e2a2e44e7/tictactoe.gif)
+
 - **Juego del ahorcado o Hangman**
   Tendrás que usar React Router para crear una página o ruta específica para este juego en `/hangman`.
   Para empezar, te recomendamos que busques una lista de N palabras (10 como mínimo) para jugar al ahorcado.
   Ahora, esperaremos que la pantalla contenga:
+
   - Crea un botón de empezar partida que al ser clickado recoja una palabra aleatoría del array de palabras y genere la pista inicial:
+
   ```jsx
   Palabra: 'Coche'
 
   Pista: _ _ _ _ _
   ```
+
   - Crea ahora un sistema de input de letras por parte de los usuarios, ya sea un conjunto de botones con el abecedario, un input, que cada letra de la pista sea un botón inicialmente... Te dejamos libertad completa, la idea es que el usuario podrá clickar o introducir letras en el juego para ser usadas en la solución 💡
   - Cada vez que un usuario introduzca una letra, comprobaremos si está en nuestra palabra. De ser así, la mostraremos `donde corresponde,` en caso contrario, mostraremos la letra en la pantalla bajo una lista de `letras erróneas` utilizadas y no permitiremos que nuestro usuario la introduzca de nuevo (puedes almacenarlas en un array de letras utilizadas para comprobar 😆).
   - Daremos un número de intentos máximos al usuario, por lo que si el usuario falla el máximo de veces permitidas le informaremos de que la partida se ha terminado y tendrá que comenzar una nueva partida usando el botón de inicio.
   - Si acierda todas las letras, ¡habrá ganado! Muestra de alguna forma las vidas que le quedan al usuario cuando intenta adivinar una palabra para que sepa como avanzar con el ejercicio 🔮
+
 - **Sudoku**
   Tendrás que usar React Router para crear una página o ruta específica para este juego en `/sudoku`.
   Como imaginarás, crear y validar un sudoku es algo bastante complicado que lleva tiempo, pero vamos a echarte una mano en la parte que no está tan relacionada con `React` y te vamos a recomendar el uso de una librería que por nuestra experiencia, funciona bastante bien: [https://www.npmjs.com/package/sudoku](https://www.npmjs.com/package/sudoku) (siéntente libre de usar alguna otra alternativa si lo deseas).
+
   ```bash
   npm i sudoku
   ```
+
   Esta librería genera un array de un solo nivel con `81` celdas, es decir, `9x9` elementos que podremos renderizar sin problemas 🎉 Algunos números vienen ya en el array y tendremos que sustituir los valores `null` por nuevos números adecuados según el usuario lo complete en la interfaz.
   Para generar el tablero inicial que debemos renderizar, hay que usar un estado, no te preocupes por ello que ya te dejamos esta pista también, queremos que te centres en React principalmente:
+
   ```jsx
   const [sudokuBoard, setSudokuBoard] = useState(null);
 
@@ -73,19 +84,24 @@ Este proyecto puede llevarse al alcance que cada cual estime posible dentro de l
     setSudokuBoard(newBoard);
   }, []);
   ```
+
   Ahora tendrás que maquetar por medio de CSS y JSX, el tablero (recomendamos que uses botones o inputs), para que un usuario pueda introducir un número del 1 al 9 en el sudoku. Te dejamos libertad para decidir como hacerlo, pero debes permitir que vaya rellenando las casillas vacías hasta completar el sudoku 🔢
   ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96dab8f1-9834-4454-aae4-3bfa90d5594c/Captura_de_pantalla_2020-07-03_a_las_23.46.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96dab8f1-9834-4454-aae4-3bfa90d5594c/Captura_de_pantalla_2020-07-03_a_las_23.46.16.png)
   La función que comprueba si el sudoku se ha completado es parte de la librería también:
+
   ```jsx
   // Comprobamos si solved es truthy, y sudokuBoard está correctamente solucionado
   const solved = sudoku.solvepuzzle(sudokuBoard);
   ```
+
   En el momento en que el usuario haya completado la última celda disponible, permitiremos que esté disponible un **botón para validar su sudoku** contra la solución.
   Si la solución no es correcta, le daremos a nuestros usuarios las siguientes posibilidades:
+
   ```jsx
   - Ver la solución y acabar la partida.
   - Seguir intentándolo y comprobar más tarde.
   ```
+
   Por último, añade un botón para empezar una nueva partida siempre que queramos, pisando los datos anteriores de nuestro estado.
 
 **Para terminar...**
