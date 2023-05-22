@@ -32,7 +32,7 @@ const Login = () => {
         <button>LOG IN</button>
       </form>
 
-      <div className="gifWrapper">
+      {/* <div className="gifWrapper">
         <iframe
           src="https://giphy.com/embed/4pMX5rJ4PYAEM"
           width="480"
@@ -42,7 +42,7 @@ const Login = () => {
         <p>
           <a href="https://giphy.com/gifs/homer-simpson-the-simpsons-bush-4pMX5rJ4PYAEM"></a>
         </p>
-      </div>
+      </div> */}
     </main>
   );
 };
