@@ -25,6 +25,7 @@ const Login = () => {
 
       <form onSubmit={(ev) => login(ev)}>
         <input
+          className="loginInput"
           type="text"
           placeholder="Username"
           onInput={(ev) => setUsername(ev.target.value)}

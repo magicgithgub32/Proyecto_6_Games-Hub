@@ -7,25 +7,14 @@ form {
     margin: 2rem;
 }
 
-input {
+.loginInput {
     width: 170px;
     height: 30px;
     font-size: 20px;
     padding: 1rem;
 }
 
-input::placeholder { 
+.loginInput::placeholder { 
 text-indent: 30px;
 }
 
-.gifWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.gifWrapper {
-    @media screen and (max-width: 560px) {
-        display: none;
-      }
-}
