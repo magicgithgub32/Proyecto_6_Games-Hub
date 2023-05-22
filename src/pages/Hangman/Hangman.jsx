@@ -8,7 +8,7 @@ import WordContainer from "../../components/Hangman/wordContainer/WordContainer"
 import LivesRow from "../../components/Hangman/livesRow/LivesRow";
 import HangmanAlphabet from "../../components/Hangman/hangmanAlphabet/HangmanAlphabet";
 import MissedLetters from "../../components/Hangman/missedLetters/MissedLetters";
-import { checkGame } from "../../utils/hangman/checkgame";
+import { checkGame } from "../../utils/hangman/checkGame";
 import GameTitle from "../../components/gameTitle/GameTitle";
 
 const Hangman = () => {
