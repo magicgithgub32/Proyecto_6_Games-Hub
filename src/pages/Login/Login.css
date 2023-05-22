@@ -8,13 +8,14 @@ form {
 }
 
 input {
-    width: 140px;
+    width: 170px;
     height: 30px;
     font-size: 20px;
+    padding: 1rem;
 }
 
 input::placeholder { 
-text-indent: 37px;
+text-indent: 30px;
 }
 
 .gifWrapper {
