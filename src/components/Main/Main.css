@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    margin-top: 3rem;
 }
 
 .mainWrapper > img {
@@ -11,9 +11,15 @@
     width: auto;
 }
 
+
 .mainWrapper > img {
     @media screen and (max-width: 644px) {
         height: 50%;
-        margin-top: 3rem;
+      }
+}
+
+.mainWrapper > img {
+    @media screen and (max-width: 460px) {
+        display: none;
       }
 }

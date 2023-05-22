@@ -1,4 +1,4 @@
-> > > > > > > > > > > > > > > USER ALLOWED: MasterOfGames
+> > > > > > > > > > > > > > > USER ALLOWED: MasterOfDisaster > > > >
 
 Proyecto_6_Games-Hub
 ¡Lo has hecho muy bien para haber llegado hasta aquí! Ahora que estamos entrando a la recta final vamos a avanzar en módulo de `React` haciendo algo grande.

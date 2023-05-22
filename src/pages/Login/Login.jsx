@@ -11,7 +11,7 @@ const Login = () => {
 
   const login = (ev) => {
     ev.preventDefault();
-    if (username === "MasterOfGames") {
+    if (username === "MasterOfDisaster") {
       localStorage.setItem("user", username);
       setUserLogged(true);
       navigate("/home");

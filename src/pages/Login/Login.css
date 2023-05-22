@@ -8,19 +8,23 @@ form {
 }
 
 input {
-    width: 120px;
+    width: 140px;
     height: 30px;
     font-size: 20px;
 }
 
-input::placeholder {
-    
-text-indent: 25px;
+input::placeholder { 
+text-indent: 37px;
 }
 
 .gifWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.gifWrapper {
+    @media screen and (max-width: 560px) {
+        display: none;
+      }
 }
