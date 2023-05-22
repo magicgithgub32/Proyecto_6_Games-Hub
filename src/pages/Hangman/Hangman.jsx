@@ -1,7 +1,7 @@
 import "./Hangman.css";
 import React, { useState, useEffect } from "react";
 import { hangmanAlphabet } from "../../data/hangmanAlphabet";
-import Hint from "../../components/Hangman/Hint/Hint";
+import Hint from "../../components/Hangman/Hint/Hint.jsx";
 import BackHome from "../../components/backHome/BackHome";
 import PlayButton from "../../components/Hangman/playButton/PlayButton";
 import WordContainer from "../../components/Hangman/wordContainer/WordContainer";
