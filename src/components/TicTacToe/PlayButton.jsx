@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PlayButton = ({ setisStarted, isStarted, setBoard }) => {
+const PlayButton = ({ setisStarted, isStarted, setBoard, setGameOver }) => {
   const playButtonHandler = () => {
     setisStarted(!isStarted);
 
@@ -10,6 +10,7 @@ const PlayButton = ({ setisStarted, isStarted, setBoard }) => {
         [null, null, null],
         [null, null, null],
       ]);
+    setGameOver(false);
   };
   return (
     <button className="playButton" onClick={playButtonHandler}>

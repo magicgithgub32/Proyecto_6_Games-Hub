@@ -6,9 +6,10 @@ const TictactoeBoardContainer = ({
   playerOneTurn,
   setBoard,
   setPlayerOneTurn,
+  gameOver,
 }) => {
   const insertCellHandler = (i, j) => {
-    if (board[i][j] === null) {
+    if (board[i][j] === null && !gameOver) {
       const newBoard = [...board];
       newBoard[i][j] = playerOneTurn ? "X" : "O";
       setBoard(newBoard);

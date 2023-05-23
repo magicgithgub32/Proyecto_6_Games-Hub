@@ -14,9 +14,10 @@ const TicTacToe = () => {
     [null, null, null],
     [null, null, null],
   ]);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
-    checkGame(board);
+    checkGame(board, gameOver, setGameOver);
   }, [board]);
 
   return (
@@ -30,6 +31,7 @@ const TicTacToe = () => {
           setisStarted={setisStarted}
           isStarted={isStarted}
           setBoard={setBoard}
+          setGameOver={setGameOver}
         />
       </section>
       {isStarted && (
@@ -38,6 +40,7 @@ const TicTacToe = () => {
           playerOneTurn={playerOneTurn}
           setBoard={setBoard}
           setPlayerOneTurn={setPlayerOneTurn}
+          gameOver={gameOver}
         />
       )}
     </article>

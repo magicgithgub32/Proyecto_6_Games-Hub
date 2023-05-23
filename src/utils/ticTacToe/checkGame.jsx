@@ -1,4 +1,7 @@
-export const checkGame = (board) => {
+export const checkGame = (board, gameOver, setGameOver) => {
+  if (gameOver) {
+    return;
+  }
   if (
     (board[0][0] === "X" && board[0][1] === "X" && board[0][2] === "X") ||
     (board[0][0] === "X" && board[1][0] === "X" && board[2][0] === "X") ||
@@ -11,6 +14,7 @@ export const checkGame = (board) => {
   ) {
     setTimeout(() => {
       alert("🚀 PLAYER X WINS 🚀!!!");
+      setGameOver(true);
     }, 200);
   } else if (
     (board[0][0] === "O" && board[0][1] === "O" && board[0][2] === "O") ||
@@ -24,6 +28,7 @@ export const checkGame = (board) => {
   ) {
     setTimeout(() => {
       alert("🧨 PLAYER 0 WINS 🧨!!!");
+      setGameOver(true);
     }, 200);
   } else if (board.every((row) => row.every((cell) => cell !== null))) {
     setTimeout(() => {
