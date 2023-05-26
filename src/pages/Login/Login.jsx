@@ -18,6 +18,8 @@ const Login = () => {
     } else {
       alert("⛔️ User not allowed! ⛔️");
     }
+    setUsername("");
+    console.log(username);
   };
   return (
     <main>
@@ -29,21 +31,10 @@ const Login = () => {
           type="text"
           placeholder="Username"
           onInput={(ev) => setUsername(ev.target.value)}
+          value={username}
         />
         <button>LOG IN</button>
       </form>
-
-      {/* <div className="gifWrapper">
-        <iframe
-          src="https://giphy.com/embed/4pMX5rJ4PYAEM"
-          width="480"
-          height="358"
-          className="giphy-embed"
-        ></iframe>
-        <p>
-          <a href="https://giphy.com/gifs/homer-simpson-the-simpsons-bush-4pMX5rJ4PYAEM"></a>
-        </p>
-      </div> */}
     </main>
   );
 };
